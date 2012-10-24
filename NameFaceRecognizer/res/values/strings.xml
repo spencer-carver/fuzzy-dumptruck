@@ -20,5 +20,5 @@
 	<string name="dan_id">dan</string>
 	
 	<string name="username">admin</string>
-	<string name="password">password</string>
+	<string name="password"></string>
 </resources>

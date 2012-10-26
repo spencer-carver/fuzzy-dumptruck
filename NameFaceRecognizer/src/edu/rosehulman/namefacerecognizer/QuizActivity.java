@@ -25,6 +25,10 @@ public class QuizActivity extends Activity implements OnClickListener {
 	private Button guessButton;
 	private int index = 0;
 	private AlertDialog alert;
+	private int numSeen = 0;
+	private int numCorrect = 0;
+	private int numIncorrect = 0;
+	private int numSkip = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,22 @@ public class QuizActivity extends Activity implements OnClickListener {
 	}
 
 	private void getNewImage() {
+		if (numSeen == 6) {
+			AlertDialog.Builder build = new AlertDialog.Builder(this);
+			build.setTitle("Quiz Results");
+			build.setMessage("You correctly answered:" + numCorrect + " / " + numSeen +"\nYou skipped: "+ numSkip + " / " + numSeen + "\nYou incorrectly answered: "+ numIncorrect+" / " + numSeen);
+			build.setPositiveButton("Yes",
+					new DialogInterface.OnClickListener() {
+
+						public void onClick(DialogInterface dialog, int which) {
+							alert.dismiss();
+							finish();
+						}
+
+					});
+			alert = build.create();
+			alert.show();
+		}
 		int tempindex = (int) Math.round(4 * Math.random());
 		while (tempindex == index) {
 			tempindex = (int) Math.round(4 * Math.random());
@@ -87,6 +107,11 @@ public class QuizActivity extends Activity implements OnClickListener {
 
 						public void onClick(DialogInterface dialog, int which) {
 							alert.dismiss();
+							Toast.makeText(QuizActivity.this,
+									"That was " + STUDENTS[index] + ".",
+									Toast.LENGTH_SHORT).show();
+							numSkip++;
+							numSeen++;
 							getNewImage();
 							nameField.setText("");
 						}
@@ -106,19 +131,16 @@ public class QuizActivity extends Activity implements OnClickListener {
 		case R.id.guess_button:
 			if (nameField.getText().toString().equals(STUDENTS[index])) {
 				Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				numCorrect++;
+				numSeen++;
 				getNewImage();
 				nameField.setText("");
 			} else {
 				Toast.makeText(this,
 						"Incorrect, it was " + STUDENTS[index] + ".",
 						Toast.LENGTH_SHORT).show();
-				android.os.SystemClock.sleep(1000);
+				numIncorrect++;
+				numSeen++;
 				getNewImage();
 				nameField.setText("");
 			}

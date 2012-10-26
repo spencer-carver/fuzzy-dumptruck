@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,6 +15,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button quizButton;
 	private Button downloadButton;
 	private Button exitButton;
+	
+	private static final int REQ_RESET_DEMO = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,15 @@ public class MainActivity extends Activity implements OnClickListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    	if (item.getItemId() == R.id.menu_settings) {
+    		Intent intent = new Intent(this, MainActivityPreferences.class);
+    		startActivityForResult(intent, REQ_RESET_DEMO);
+    	}
+    	return false;
     }
 
 	public void onClick(View v) {
@@ -55,5 +67,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			//should not get here
 		}
 		
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case REQ_RESET_DEMO:
+			if (resultCode == RESULT_OK) {
+				//do something
+			}
+			break;
+		default:
+			super.onActivityResult(requestCode, resultCode, data);
+		}
 	}
 }

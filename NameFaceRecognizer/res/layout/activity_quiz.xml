@@ -14,20 +14,20 @@
         android:contentDescription="@string/featured_image"
         android:scaleType="fitCenter"
         android:src="@drawable/spencer_angel_pic" />
-
+
     <AutoCompleteTextView
         android:id="@+id/name_autocomplete_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter a name"
         android:ems="10"
+        android:hint="Enter a name"
         android:inputType="textAutoComplete|textPersonName" />
 
     <LinearLayout
         android:id="@+id/button_container"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal" >
 
         <Button
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Give Up" />
+            android:text="Skip" />
 
         <Button
             android:id="@+id/guess_button"
@@ -51,5 +51,21 @@
             android:layout_weight="1"
             android:text="Answer" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz Progress:"
+        android:paddingTop="30dp">
+        
+    </TextView>
+    
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.48"
+        android:progress="45" />
 
 </LinearLayout>

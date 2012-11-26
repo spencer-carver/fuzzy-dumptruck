@@ -26,10 +26,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/subtitle"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:layout_marginTop="40dp" >
+        android:paddingRight="50dp" >
+
+        <Button
+            android:id="@+id/download_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/download_button_text" >
+        </Button>
 
         <Button
             android:id="@+id/review_button"
@@ -37,21 +44,14 @@
             android:layout_height="wrap_content"
             android:text="@string/review_button_text" >
         </Button>
-        
+
         <Button
             android:id="@+id/quiz_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/quiz_button_text" >
         </Button>
-        
-        <Button
-            android:id="@+id/download_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/download_button_text" >
-        </Button>
-        
+
         <Button
             android:id="@+id/exit_button"
             android:layout_width="match_parent"

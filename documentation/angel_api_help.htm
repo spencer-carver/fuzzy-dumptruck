@@ -1,0 +1,665 @@
+<HTML>
+	<HEAD>
+		<TITLE>API Test</TITLE><base href="http://127.0.0.1/AngelDev/api/v1.0/" target="winResults">
+		<STYLE type="text/css"> body { font-family:verdana; }
+	.func { font-family:verdana;margin-top:5px;margin-bottom:10px; }
+	.label a { text-decoration:none;color:green;font-style:italic;margin-bottom:5px; }
+	.param { font-family:verdana;margin-top:5px;margin-bottom:10px; }
+	.label { font-size:larger; }
+	</STYLE>
+	</HEAD>
+	<BODY>
+		<h2>API Functions</h2>
+		<P>All API calls return an XML stream with top top-level element of 
+			&lt;result/&gt;. If an error occurs, the API will return an &lt;error/&gt; 
+			element inside the &lt;result/&gt; whose contents will contain the error 
+			string. If the function call is successful, the API will return a 
+			&lt;success/&gt; element inside of the &lt;result/&gt; element whose contents 
+			may contain additional information about the result of the request. Some 
+			functions will return additional sub-elements of the &lt;result/&gt; element 
+			with the requested data. These elements are described in the function 
+			definitions that follow. For all section file management functions, the paths 
+			to folders and files must always be specified as relative to the root folder 
+			for the specified section.</P>
+		<div class="func">
+			<div class="label">
+				CREATE_ACCOUNT(AccountID, User, Password, FirstName, LastName, MiddleName, 
+				Prefix, Suffix, Nickname, EMail, Homepage, SystemRights, AccountGroup, 
+				AccountExpires, Tel1Type, Tel1,&nbsp;Adr1Type, Adr1Line1, Adr1Line2, Adr1Line3, 
+				Adr1POBox, Adr1City, Adr1State, Adr1PostalCode, Adr1Country, Tel2type, Tel2, 
+				Adr2Type, Adr2Line1, Adr2Line2, Adr2Line3, Adr2POBox, Adr1City, Adr2State, 
+				Adr2PostalCode, Adr2Country, Tel3Type, Tel3, Tel4Type, Tel4,&nbsp;Title, Role, 
+				Organization, Department,&nbsp;SSN, DefaultViewableBy, ProfileViewableBy, 
+				OrganizationViewableBy, EmailViewableBy, 
+				WWWViewableBy,&nbsp;Telephone1ViewableBy, Telephone2ViewableBy, 
+				Telephone3ViewableBy, Telephone4ViewableBy, Address1ViewableBy, 
+				Address2ViewableBy)</div>
+			Creates a new account based on the provided information and returns success or 
+			error result information.&nbsp;</div>
+		<div class="func">
+			<div class="label">UPDATE_ACCOUNT(User, Password, FirstName, LastName, MiddleName, 
+				Prefix, Suffix, Nickname, EMail, Homepage, SystemRights, AccountGroup, 
+				AccountExpires, Tel1Type, Tel1,&nbsp;Adr1Type, Adr1Line1, Adr1Line2, Adr1Line3, 
+				Adr1POBox, Adr1City, Adr1State, Adr1PostalCode, Adr1Country, Tel2type, Tel2, 
+				Adr2Type, Adr2Line1, Adr2Line2, Adr2Line3, Adr2POBox, Adr1City, Adr2State, 
+				Adr2PostalCode, Adr2Country, Tel3Type, Tel3, Tel4Type, Tel4,&nbsp;Title, Role, 
+				Organization, Department, SSN, DefaultViewableBy, ProfileViewableBy, 
+				OrganizationViewableBy, EmailViewableBy, 
+				WWWViewableBy,&nbsp;Telephone1ViewableBy, Telephone2ViewableBy, 
+				Telephone3ViewableBy, Telephone4ViewableBy, Address1ViewableBy, 
+				Address2ViewableBy)</div>
+			Updates an account record based on the User value provided.&nbsp; Returns 
+			success or error result information.&nbsp;</div>
+		<div class="func">
+			<div class="label">CHECK_ACCOUNT(User)</div>
+			Checks to see if an account exists for the provided username.&nbsp; Returns 
+			true or false based on existence.</div>
+		<div class="func">
+			<div class="label">ENROLL_USER(User, Section, SectionRights)</div>
+			Enrolls a user into a specific course with the provided information.&nbsp; 
+			Returns success or error result information.</div>
+		<div class="func">
+			<div class="label">DROP_ENROLLED_USER(User, Section)</div>
+			Drops a user from a specific course.&nbsp; Returns success or error result 
+			information.</div>
+		<div class="func">
+			<div class="label">CHECK_USER_ENROLLMENT(User, Section)</div>
+			Checks to see if a specific user is enrolled in a given course.&nbsp; Returns 
+			true or false based on enrollment.</div>
+		<div class="func">
+			<div class="label">CREATE_UPDATE_SECTION(Course_ID, Course_Type, Category, 
+				Instructor_ID, Instructor, Title, Keywords, Semester, Campus, School, 
+				Department, Course, Section, Cost, Credits, Contact1, Contact2, 
+				Enrollment_Begins, Enrollment_Ends, Class_Begins, Class_Ends, Hidden, Disabled, 
+				Viewable_By, Billing_ID, Enrollment_PIN, Description)</div>
+			Creates a new course based on the provided information and returns success or 
+			error result information.</div>
+		<div class="func">
+			<div class="label">CHECK_SECTION(Section)</div>
+			Checks to see if a specific&nbsp;course&nbsp;exists.&nbsp; Returns true or 
+			false based on existence.&nbsp;</div>
+		<div class="func">
+			<div class="label">AUTHENTICATION_PASS(User, Section, Password, Validate)</div>
+			Creates a login token for single sign-on authentication.&nbsp; Returns the 
+			single sign-on URL with token or error result information.</div>
+		<div class="func">
+			<DIV class="label">QUIZ_QTI_IMPORT(Section, Parent, ServerBase, BasePath, Filename, 
+				Data)</DIV>
+			Creates new quiz questions from a QTI data source.&nbsp;Use Filename&nbsp;to 
+			provide the&nbsp;path to a QTI data file, relative to the root section root 
+			folder, or provide the QTI data directly via the Data parameter.&nbsp;The 
+			ServerBase parameter should contain the appropriate URI to the root directory 
+			of the server. This path will be added to image URIs that begin with a "/". The 
+			BasePath parameter should contain the relative path to the directory where 
+			associated images are located. This path will be added to any image URIs that 
+			do not begin with "http" or a "/".
+		</div>
+		<div class="func">
+			<div class="label">QUIZ_SETTINGS(Section, Entry)</div>
+			Retrieves the Advanced Quiz Settings for the specified quiz. Results are 
+			returned in a &lt;quiz_settings/&gt; element.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">QUIZ_SETTINGS_SAVE(Section, Entry, Data)</div>
+			Saves changes to the Advanced Quiz Settings for the specified quiz.&nbsp;Data 
+			should contain a valid &lt;quiz_settings/&gt; element with the settings to be 
+			changed unspecified settings will not be modified. To remove a previously 
+			specified setting specify the setting with an empty string value.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_ENTER(Section)</div>
+			Initializes the specified course, group or library for access. This is only 
+			required if you wish to interact directly with script pages in the /Sections/ 
+			directory of the ANGEL application. &nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_EXIT()</div>
+			Destroys session state information created by the SECTION_ENTER function call, 
+			effectively exiting the section.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_ROSTER(Section)</div>
+			Returns roster information for the specified course, group or library.
+			<BR>
+			Return Value: A&nbsp;&lt;roster/&gt; element with&nbsp;a subordinate 
+			&lt;rec/&gt; element for each&nbsp;enrollment entry&nbsp;for the specified 
+			section.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_TEAM_ROSTER(Section, Team)</div>
+			Returns team roster information for the specified team.
+			<BR>
+			Return Value: A&nbsp;&lt;roster/&gt; element with&nbsp;a subordinate 
+			&lt;rec/&gt; element for each&nbsp;member of the specified&nbsp;team in the 
+			specified section.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_TEAMS(Section)</div>
+			Returns a list of teams defined for the specified course, group or library.<BR>
+			Return Value:&nbsp;A &lt;teams/&gt; element with a subordinate &lt;rec/&gt; 
+			element for each team in the specified section.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_SEARCH(Section, User, Find, Types, Filter, Order, 
+				Fields, MaxRecs)</div>
+			Returns a list of items in the specified course, group or library that meet all 
+			specified criteria.&nbsp;
+			<BR>
+			Return Value: An &lt;items/&gt; element with a subordinate &lt;rec/&gt; element 
+			for each item that matches the criteria.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_TOC(Section, User, Entry, Types, SkipNodes)</div>
+			Returns a threaded listing of&nbsp;qualifying content items in the specified 
+			course. Because the results are threaded, items of type "FOLDER" will always be 
+			included in the results. If no Types&nbsp;are explicitly listed all top-level 
+			types are automatically returned. Sub-types such as "QUESTION" and "FIELD" 
+			items are never returned. To access these items use the SECTION_SEARCH 
+			function. If ENTRY is specified it must reference a valid&nbsp;Folder&nbsp;in 
+			the specified course, group or library. If specified, the returned results will 
+			contain only the child nodes of the specified folder. If not specified, all 
+			items within the&nbsp;section are returned.<BR>
+			Return Value: A &lt;toc/&gt; element with any number of &lt;node/&gt; elements 
+			which may themselves contain any of the following sub-elements: &lt;title/&gt; 
+			with the title of the node, &lt;subtitle/&gt; with the subtitle of the node and 
+			&lt;children/&gt; which may contain any number of node entries representing its 
+			descendant tree structure.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_USER_TEAMS(Section, User)</div>
+			List the teams in which the specified user is a member in the specified course, 
+			group or library.<BR>
+			Return Value:&nbsp;A &lt;teams/&gt; element with a subordinate &lt;rec/&gt; 
+			element for each team in the specified section in which the specified user is 
+			enrolled.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_IMS_IMPORT(Section, Parent, RelPath, Organization, 
+				FileType)</div>
+			Imports the specified IMS file creating ANGEL items for&nbsp;all of the items 
+			specified in the imsmanifest file's organization. These items will be created 
+			as children of the item specified in the Parent parameter. If no Parent 
+			parameter is specified, the ROOT element is assumed.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_ITEM(Section, User, Entry)</div>
+			Retrieves metadata for the specified&nbsp;content item. The item must exist in 
+			the specified course.<BR>
+			Return Value:&nbsp;An &lt;items/&gt;&nbsp;element with a subordinate 
+			&lt;item/&gt; element with attributes for each metadata element.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_ITEM_CREATE(Section, Data)</div>
+			Creates a new content item in the specified course, group or library based on 
+			the settings specified. Settings should be passed in the Data element as a 
+			valid &lt;item/&gt; element with attributes for each of the settings you wish 
+			to specify.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_ITEM_SAVE(Section, Data)</div>
+			Saves changes to the specified content item in the&nbsp;specified course, group 
+			or library.&nbsp;Which item is being updated is determined by looking at the 
+			item's ENTRY_ID attribute. The ENTRY_ID, OBJECT_ID 
+			and&nbsp;COURSE_ID&nbsp;settings cannot be changed. If the specified item is 
+			not in the&nbsp;course, group or library&nbsp;specified by the Section 
+			parameter an error occurs.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_CREATE_FILE(Section, Filename, Data, Unicode, 
+				Force)</div>
+			Creates a new text file with its contents being the text passed in the Data 
+			parameter. If Unicode is 1 the file is saved as Unicode, otherwise as 
+			ASCII.&nbsp;The filename should be the path to the new file relative to the 
+			section root folder.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_CREATE_FOLDER(Section, RelPath)</div>
+			Creates a new folder in the specified section. The RelPath parameter should 
+			contain the path for the new folder relative to the section root folder.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_DELETE_FILE(Section, Filename, Force)</div>
+			Deletes the file specified by Filename.&nbsp;The Filename&nbsp;parameter should 
+			contain the path for the&nbsp;file relative to the section root folder.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_DELETE_FOLDER(Section, RelPath, Force)</div>
+			Deletes the&nbsp;folder specified by 
+			RelPath.&nbsp;The&nbsp;RelPath&nbsp;parameter should contain the path for 
+			the&nbsp;folder relative to the section root folder.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_EXTRACT_FILE(Section, Filename, DestPath, 
+				Password, Force, Delete)</div>
+			Extracts the zip archive file specified by Filename to the folder specified by 
+			DestPath. Both of these settings should be relative to the section root folder. 
+			If the archive is password protected, provide the password using the Password 
+			parameter. If you wish to delete the archive after extraction set the Delete 
+			parameter to 1.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_LIST(Section, RelPath, Recursive)</div>
+			Returns a list of folders and files in the&nbsp;folder specified by RelPath. 
+			RelPath should be relative to the section root folder. If the Recursive 
+			parameter is set to 1 information about all files and folders in subordinate 
+			folders is also returned. The root folder's contents can be returned 
+			by&nbsp;specifying "/" for the RelPath.<BR>
+			Return Value: A &lt;folder/&gt; element with subordinate &lt;folder/&gt; and 
+			&lt;file/&gt; elements for each folder&nbsp;or file contained in the 
+			directory.&nbsp;Subordinate &lt;folder/&gt; elements will contain the same if 
+			Recursive is set to 1.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_MOVE_FILE(Section, Filename, DestPath, Force)</div>
+			Moves the file specified by Filename to the new path and filename specified by 
+			DestPath. Both parameters should be relative to the section root 
+			folder.&nbsp;If DestPath points to a folder the file will be moved inside of 
+			that folder&nbsp;using the same filename.
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_MOVE_FOLDER(Section, RelPath, DestPath, Force)</div>
+			Moves the&nbsp;folder specified by&nbsp;RelPath to the new path specified by 
+			DestPath. Both parameters should be relative to the section root folder. If 
+			DestPath ends with a "/" or points to an existing folder, the folder will 
+			be&nbsp;moved inside of this folder. Otherwise, the folder will be created 
+			exactly as the specified DestPath.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_RENAME_FILE(Section, Filename, NewName, Force)</div>
+			Renames the file specified by Filename to the filename specified in NewName. 
+			NewName may not contain any path information. Filename should contain the path 
+			to the source file relative to the section root folder.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_RENAME_FOLDER(Section, RelPath, NewName, Force)</div>
+			Renames the folder specified by RelPath to the name specified by NewName. 
+			NewName may not contain any path information. RelPath should contain the path 
+			to the source folder relative to the section root folder.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SECTION_FILES_FILES_UPLOAD_FILE(Section, RelPath, Filename, 
+				Force, UploadFile)</div>
+			Uploads the file contained in the UploadFile element to the directory specified 
+			by RelPath. The Relpath should be relative to the section root folder. If 
+			Filename is specified the file will be&nbsp;saved as the specified name. If 
+			Filename is unspecified the&nbsp;name will be derived from the uploaded file. 
+			If Force is not set to 1 and a file already exists with the specified name in 
+			the specified path, a new filename will be created by adding a 1, 2, 3, etc. to 
+			the base filename until a unique name is found. You must use 
+			"multipart/form-data" encoding when calling this method so that the upload file 
+			can be processed.
+		</div>
+		<div class="func">
+			<div class="label">SESSION_END()</div>
+			Ends the session by calling Session.Abandon destroying all resources and 
+			session information.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">SESSION_START(User, Password)</div>
+			Initializes a ANGEL user session using the provided username and password. This 
+			is not required for using any of the API functions, but could be useful if you 
+			wish to directly access user-level pages&nbsp;within the ANGEL environment, 
+			especially those within the /Profile directory.
+		</div>
+		<div class="func">
+			<div class="label">USER_ENROLLMENTS(User)</div>
+			Returns a list of enrollment entries for the specified user indicating the 
+			user's enrollment status in courses, groups and libraries.&nbsp;
+		</div>
+		<div class="func">
+			<div class="label">VALIDATE_ACCOUNT(User, Password)</div>
+			Checks if the specified credentials are valid and returns succes or error 
+			result information.&nbsp;&nbsp;
+		</div>
+		<h2>API Parameters</h2>
+		<div class="param">
+			<div class="label">APIAction</div>
+			The API function you wish to execute.</div>
+		<div class="param">
+			<div class="label">APIUser</div>
+			The username of the account to use while accessing the API.</div>
+		<div class="param">
+			<div class="label">APIPwd</div>
+			The password for the account used for APIUser.</div>
+		<div class="param" id="dp_accountid">
+			<div class="label">AccountID</div>
+			Account ID of user.</div>
+		<div class="param" id="dp_accountgroup">
+			<div class="label">AccountGroup</div>
+			The account group the user is a part of.</div>
+		<div class="param" id="dp_accountexpires">
+			<div class="label">AccountExpires</div>
+			The date the user's account expires.</div>
+		<div class="param" id="dp_adr1viewable">
+			<div class="label">Address1ViewableBy</div>
+			Sets min course rights needed to view user's Address #1. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="Div2">
+			<div class="label">Address2ViewableBy</div>
+			Sets min course rights needed to view user's Address #2. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="Adr1Type">
+			<div class="label">Adr1Type</div>
+			The type of address #1.</div>
+		<div class="param" id="Adr1Line1">
+			<div class="label">Adr1Line1</div>
+			The first line of the street address for address #1.</div>
+		<div class="param" id="Adr1Line2">
+			<div class="label">Adr1Line2</div>
+			The second line of the street address for address #1.</div>
+		<div class="param" id="Adr1Line3">
+			<div class="label">Adr1Line3</div>
+			The third line of the street address for address #1.</div>
+		<div class="param" id="Adr1pobox">
+			<div class="label">Adr1POBox</div>
+			The PO Box for address #1.</div>
+		<div class="param" id="adr1city">
+			<div class="label">Adr1City</div>
+			The city for address #1.</div>
+		<div class="param" id="adr1state">
+			<div class="label">Adr1State</div>
+			The state for address #1.</div>
+		<div class="param" id="adr1postalcode">
+			<div class="label">Adr1PostalCode</div>
+			The postal code for address #1.</div>
+		<div class="param" id="adr1country">
+			<div class="label">Adr1Country</div>
+			The country for address #1.</div>
+		<div class="param" id="adr2type">
+			<div class="label">Adr2Type</div>
+			The type of address #2.</div>
+		<div class="param" id="adr2line1">
+			<div class="label">Adr2Line1</div>
+			The first line of the street address for address #2.</div>
+		<div class="param" id="adr2line2">
+			<div class="label">Adr2Line2</div>
+			The second line of the street address for address #2.</div>
+		<div class="param" id="adr2line3">
+			<div class="label">Adr2Line3</div>
+			The third line of the street address for address #2.</div>
+		<div class="param" id="adr2pobox">
+			<div class="label">Adr2POBox</div>
+			The PO Box for address #2.</div>
+		<div class="param" id="adr2city">
+			<div class="label">Adr2City</div>
+			The city for address #2.</div>
+		<div class="param" id="adr2state">
+			<div class="label">Adr2State</div>
+			The state for address #2.</div>
+		<div class="param" id="adr2postalcode">
+			<div class="label">Adr2PostalCode</div>
+			The postal code for address #2.</div>
+		<div class="param" id="adr2country">
+			<div class="label">Adr2Country</div>
+			The country for address #2.</div>
+		<div class="param" id="dp_basepath">
+			<div class="label">BasePath</div>
+			The base path to use for images with a relative path during a QTI Import.</div>
+		<div class="param" id="dp_billingid">
+			<div class="label">Billing_ID</div>
+		</div>
+		<div class="param" id="dp_category">
+			<div class="label">Categroy</div>
+			The grouping in which the course should be categorized.</div>
+		<div class="param" id="dp_campus">
+			<div class="label">Campus</div>
+			The campus designation for the course.</div>
+		<div class="param" id="dp_classbegins">
+			<div class="label">Class_Begins</div>
+			The date class begins for the course.</div>
+		<div class="param" id="dp_classends">
+			<div class="label">Class_Ends</div>
+			The date class ends for the course.</div>
+		<div class="param" id="dp_contact1">
+			<div class="label">Contact1</div>
+			Primary contact for the course.</div>
+		<div class="param" id="dp_contact2">
+			<div class="label">Contact2</div>
+			Secondary contact for the course.</div>
+		<div class="param" id="dp_cost">
+			<div class="label">Cost</div>
+			Tuition for the course.</div>
+		<div class="param" id="dp_course">
+			<div class="label">Course</div>
+			The course designation for the course.</div>
+		<div class="param" id="dp_courseid">
+			<div class="label">Course_ID</div>
+			The COURSE_ID of the course, group or library in which to work.</div>
+		<div class="param" id="dp_coursetype">
+			<div class="label">Course_Type</div>
+			The type of course. (COURSE, GROUP, LIBRARY)</div>
+		<div class="param" id="dp_credits">
+			<div class="label">Credits</div>
+			The credits earned for the course.</div>
+		<div class="param" id="dp_data">
+			<div class="label">Data</div>
+			The data for the function usually a record in XML format.</div>
+		<div class="param" id="dp_defaultviewable">
+			<div class="label">DefaultViewableBy</div>
+			Default Viewable by for all Profile sections. Valid values same as SystemRights 
+			parameter.</div>
+		<div class="param" id="dp_delete">
+			<div class="label">Delete</div>
+			Specifies that the source file should be deleted upon completion of the 
+			specified function.</div>
+		<div class="param" id="dp_Department">
+			<div class="label">Department</div>
+			The department designation for the course.</div>
+		<div class="param" id="dp_description">
+			<div class="label">Description</div>
+			The description of the course.</div>
+		<div class="param" id="dp_destpath">
+			<div class="label">DestPath</div>
+			The path to which the folder(s) or file(s) should be written.</div>
+		<div class="param" id="dp_disabled">
+			<div class="label">Disabled</div>
+			Designates whether or not the course is active or not.</div>
+		<div class="param" id="dp_entry">
+			<div class="label">Entry</div>
+			The&nbsp;ENTRY_ID field&nbsp;from the LSN_ENTRIES table for the ANGEL item.</div>
+		<div class="param" id="dp_email">
+			<div class="label">EMail</div>
+			An email address.</div>
+		<div class="param" id="dp_emailviewable">
+			<div class="label">EmailViewableBy</div>
+			Sets min course rights needed to view user's email address. Valid values same 
+			as SystemRights parameter.</div>
+		<div class="param" id="dp_enrollmentbegins">
+			<div class="label">Enrollment_Begins</div>
+			The date enrollment begins for the course.</div>
+		<div class="param" id="dp_enrollmentends">
+			<div class="label">Enrollment_Ends</div>
+			The date enrollment ends for the course.</div>
+		<div class="param" id="dp_enrollmentpin">
+			<div class="label">Enrollment_PIN</div>
+			The PIN needed to enroll in the course.</div>
+		<div class="param" id="dp_fields">
+			<div class="label">Fields</div>
+			A comma separated list of fields to be returned.</div>
+		<div class="param" id="dp_filename">
+			<div class="label">Filename</div>
+			The name and sometimes relative path of the file.</div>
+		<div class="param" id="dp_filetype">
+			<div class="label">Filetype</div>
+			Set to "WEBCT" if the IMS file is&nbsp;from a WebCT export. The default is 
+			"IMS".</div>
+		<div class="param" id="dp_filter">
+			<div class="label">Filter</div>
+			Specify a custom filter in the form of a SQL WHERE clause without the word 
+			"WHERE".</div>
+		<div class="param" id="dp_find">
+			<div class="label">Find</div>
+			The string for which you wish to search. This may include SQL wildcard 
+			characters such as "%".</div>
+		<div class="param" id="dp_firstname">
+			<div class="label">FirstName</div>
+			The first name of the user.</div>
+		<div class="param" id="dp_force">
+			<div class="label">Force</div>
+			Specifies that function should overwrite file or folder and disregard 
+			safeguards such as "read only".</div>
+		<div class="param" id="dp_hidden">
+			<div class="label">Hidden</div>
+			Designates whether or not the course is viewable by others</div>
+		<div class="param" id="dp_homepage">
+			<div class="label">Homepage</div>
+			The homepage URL of the user.</div>
+		<div class="param" id="dp_instructorid">
+			<div class="label">Instructor_ID</div>
+			The ID of the instructor for the course.</div>
+		<div class="param" id="dp_instructor">
+			<div class="label">Instructor</div>
+			The instructor's name for the course.</div>
+		<div class="param" id="dp_keywords">
+			<div class="label">Keywords</div>
+			Searchable keywords for the course.</div>
+		<div class="param" id="dp_lastname">
+			<div class="label">LastName</div>
+			The last name of the user.</div>
+		<div class="param" id="dp_maxrecs">
+			<div class="label">MaxRecs</div>
+			The maximum number of records to return.&nbsp;Which records are returned is 
+			based on the ORDER parameter.</div>
+		<div class="param" id="dp_middlename">
+			<div class="label">MiddleName</div>
+			The middle name of the user.</div>
+		<div class="param" id="dp_newname">
+			<div class="label">NewName</div>
+			The new name for the file or folder. This is never a relative path.</div>
+		<div class="param" id="dp_nickname">
+			<div class="label">Nickname</div>
+			The nickname of the user.</div>
+		<div class="param" id="dp_order">
+			<div class="label">Order</div>
+			A comma-separated list of fields specifying a sort order. May also use the ASC 
+			and DESC attributes for any items.</div>
+		<div class="param" id="dp_organization">
+			<div class="label">Organization</div>
+			Specifies the zero-based index of the desired organization to use for the IMS 
+			import. The default is 0.</div>
+		<div class="param" id="dp_orgviewable">
+			<div class="label">OrganizationViewableBy</div>
+			Sets min course rights needed to view user's organizational information. Valid 
+			values same as SystemRights parameter.</div>
+		<div class="param" id="dp_parent">
+			<div class="label">Parent</div>
+			The ENTRY_ID of the parent of the specified item.</div>
+		<div class="param" id="dp_password">
+			<div class="label">Password</div>
+			The password for the specified USER.</div>
+		<div class="param" id="dp_prefix">
+			<div class="label">Prefix</div>
+			The prefix of the user.</div>
+		<div class="param" id="dp_profile">
+			<div class="label">ProfileViewableBy</div>
+			Sets min course rights needed to view users's profile. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="dp_recursive">
+			<div class="label">Recursive</div>
+			Specifies that contents of subfolders should also be returned.</div>
+		<div class="param" id="dp_relpath">
+			<div class="label">RelPath</div>
+			Relative path for the file or folder.</div>
+		<div class="param" id="dp_role">
+			<div class="label">Role</div>
+			The organizational role of the user.</div>
+		<div class="param" id="sp_school">
+			<div class="label">School</div>
+			The school designation for the course.</div>
+		<div class="param" id="dp_section">
+			<div class="label">Section</div>
+			The COURSE_ID of the course, group or library in which to work.</div>
+		<div class="param" id="dp_sectionrights">
+			<div class="label">SectionRights</div>
+			The section rights of the user for a specific course.</div>
+		<div class="param" id="dp_semester">
+			<div class="label">Semester</div>
+			The semester designation for the course.</div>
+		<div class="param" id="dp_serverbase">
+			<div class="label">ServerBase</div>
+			The base path for the server root to use for images with a URI starting with a 
+			"/".</div>
+		<div class="param" id="dp_skipnodes">
+			<div class="label">SkipNodes</div>
+			A comma-separated list of ENTRY_IDs of nodes that should not be included in 
+			results.</div>
+		<div class="param" id="SSN">
+			<div class="label">SSN</div>
+			The Social Security Number of the user.</div>
+		<div class="param" id="dp_suffix">
+			<div class="label">Suffix</div>
+			The suffix of the user.</div>
+		<div class="param" id="dp_systemrights">
+			<div class="label">SystemRights</div>
+			The system rights of the user.</div>
+		<div class="param" id="dp_team">
+			<div class="label">Team</div>
+			The id of the team.</div>
+		<div class="param" id="Tel1">
+			<div class="label">Tel1</div>
+			The number of Telephone #1.</div>
+		<div class="param" id="Tel2">
+			<div class="label">Tel2</div>
+			The number of Telephone #2.</div>
+		<div class="param" id="Tel3">
+			<div class="label">Tel3</div>
+			The number of Telephone #3.</div>
+		<div class="param" id="Tel4">
+			<div class="label">Tel4</div>
+			The number of Telephone #4.</div>
+		<div class="param" id="dp_tel1type">
+			<div class="label">Tel1Type</div>
+			The type of Telephone #1.</div>
+		<div class="param" id="dp_tel2type">
+			<div class="label">Tel2Type</div>
+			The type of Telephone #2.</div>
+		<div class="param" id="dp_tel3type">
+			<div class="label">Tel3Type</div>
+			The type of Telephone #3.</div>
+		<div class="param" id="dp_tel4type">
+			<div class="label">Tel4Type</div>
+			The type of Telephone #4.</div>
+		<div class="param" id="dp_tel1viewable">
+			<div class="label">Telephone1ViewableBy</div>
+			Sets min course rights needed to view user's Telephone #1. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="dp_tel2viewable">
+			<div class="label">Telephone2ViewableBy</div>
+			Sets min course rights needed to view user's Telephone #2. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="dp_tel3viewable">
+			<div class="label">Telephone3ViewableBy</div>
+			Sets min course rights needed to view user's Telephone #3. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="dp_tel4viewable">
+			<div class="label">Telephone4ViewableBy</div>
+			Sets min course rights needed to view user's Telephone #4. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="Div1">
+			<div class="label">Title</div>
+			The title of the course.</div>
+		<div class="param" id="dp_types">
+			<div class="label">Types</div>
+			A comma-separated list of object types. Based types include FOLDER, PAGE, LINK, 
+			QUIZ, FORM, DISCUSSIONFORUM, and IMS.</div>
+		<div class="param" id="dp_unicode">
+			<div class="label">Unicode</div>
+			Specifies that the file should be written in Unicode format rather than ASCII.</div>
+		<div class="param" id="dp_upload_file">
+			<div class="label">UploadFile</div>
+			An element of type FILE that contains the file to be uploaded. Please not that 
+			when uploading files the form must use ENCTYPE="multipart/form-data".</div>
+		<div class="param" id="dp_user">
+			<div class="label">User</div>
+			The username of the account.</div>
+		<div class="param" id="dp_viewableby">
+			<div class="label">ViewableBy</div>
+			Sets min course rights needed to view the course. Valid values same as 
+			SystemRights parameter.</div>
+		<div class="param" id="dp_wwwviewable">
+			<div class="label">WWWViewableBy</div>
+			Sets min course rights needed to view user's homepage. Valid values same as 
+			SystemRights parameter.</div>
+		<DIV></DIV>
+	</BODY>
+</HTML>

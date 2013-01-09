@@ -53,13 +53,14 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quiz Progress:"
-        android:paddingTop="30dp">
+        android:layout_weight="0.41"
+        android:paddingTop="30dp"
+        android:text="Quiz Progress:" >
         
     </TextView>
-    
+    
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleHorizontal"

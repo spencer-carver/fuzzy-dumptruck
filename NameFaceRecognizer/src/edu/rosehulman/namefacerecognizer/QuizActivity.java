@@ -1,8 +1,10 @@
 package edu.rosehulman.namefacerecognizer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +14,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import edu.rosehulman.data.DBAdapter;
+import edu.rosehulman.data.StudentInfo;
 
 public class QuizActivity extends Activity implements OnClickListener {
 
-	private static final String[] STUDENTS = { "Spencer Carver", "Frank Huang",
-			"Dylan Kessler", "Marina Kraeva", "Dan Schepers", "Bob Dylan",
-			"Doug Schepers", "Franklin Totten", "Marie Curie" };
+	private List<StudentInfo> mStudents;
+	private DBAdapter mDBAdapter;
 	private ImageView featuredImage;
 	private AutoCompleteTextView nameField;
 	private Button quitButton;
@@ -34,11 +37,18 @@ public class QuizActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
+		mDBAdapter = new DBAdapter(this);
+		mDBAdapter.open();
+		mStudents = mDBAdapter.getAllStudents(); // TODO replace with settings later
+		ArrayList<String> STUDENTS = new ArrayList<String>();
+		for (StudentInfo student : mStudents) {
+			STUDENTS.add(student.getName());
+		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_dropdown_item_1line, STUDENTS);
+				android.R.layout.simple_dropdown_item_1line, STUDENTS.toArray( new String[] {} ));
 		nameField = (AutoCompleteTextView) findViewById(R.id.name_autocomplete_field);
 		nameField.setAdapter(adapter);
-		nameField.setThreshold(4);
+		nameField.setThreshold(3);
 		featuredImage = (ImageView) findViewById(R.id.featured_quiz_picture);
 		getNewImage();
 		quitButton = (Button) findViewById(R.id.quit_quiz_button);
@@ -54,7 +64,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 			AlertDialog.Builder build = new AlertDialog.Builder(this);
 			build.setTitle("Quiz Results");
 			build.setMessage("You correctly answered:" + numCorrect + " / " + numSeen +"\nYou skipped: "+ numSkip + " / " + numSeen + "\nYou incorrectly answered: "+ numIncorrect+" / " + numSeen);
-			build.setPositiveButton("Yes",
+			build.setPositiveButton("Exit Quiz",
 					new DialogInterface.OnClickListener() {
 
 						public void onClick(DialogInterface dialog, int which) {
@@ -71,25 +81,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 			tempindex = (int) Math.round(4 * Math.random());
 		}
 		index = tempindex;
-		switch (index) {
-		case 0:
-			featuredImage.setImageResource(R.drawable.spencer_angel_pic);
-			break;
-		case 1:
-			featuredImage.setImageResource(R.drawable.frank_angel_pic);
-			break;
-		case 2:
-			featuredImage.setImageResource(R.drawable.dylan_angel_pic);
-			break;
-		case 3:
-			featuredImage.setImageResource(R.drawable.marina_angel_pic);
-			break;
-		case 4:
-			featuredImage.setImageResource(R.drawable.dan_angel_pic);
-			break;
-		default:
-			// should not get here
-		}
+		featuredImage.setImageBitmap(mStudents.get(index).getPicture());
 
 	}
 
@@ -108,7 +100,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 						public void onClick(DialogInterface dialog, int which) {
 							alert.dismiss();
 							Toast.makeText(QuizActivity.this,
-									"That was " + STUDENTS[index] + ".",
+									"That was " + mStudents.get(index).getName() + ".",
 									Toast.LENGTH_SHORT).show();
 							numSkip++;
 							numSeen++;
@@ -129,7 +121,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 			alert.show();
 			break;
 		case R.id.guess_button:
-			if (nameField.getText().toString().equals(STUDENTS[index])) {
+			if (nameField.getText().toString().equals(mStudents.get(index).getName())) {
 				Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
 				numCorrect++;
 				numSeen++;
@@ -137,7 +129,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 				nameField.setText("");
 			} else {
 				Toast.makeText(this,
-						"Incorrect, it was " + STUDENTS[index] + ".",
+						"Incorrect, it was " + mStudents.get(index).getName() + ".",
 						Toast.LENGTH_SHORT).show();
 				numIncorrect++;
 				numSeen++;

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <PreferenceCategory android:title="@string/key_pref_category" android:key="@string/key_pref_category">
-        <Preference android:key="@string/key_pref" android:title="@string/key_pref" android:summary="@string/pref_summary"/>
+
+    <PreferenceCategory
+        android:key="@string/key_pref_category"
+        android:title="@string/key_pref_category" >
+        <Preference
+            android:key="@string/key_pref"
+            android:summary="@string/pref_summary"
+            android:title="@string/key_pref" />
+        
+        <Preference
+            android:key="@string/key_reload"
+            android:summary="@string/reload_summary"
+            android:title="@string/key_reload" />
     </PreferenceCategory>
-    
 
 </PreferenceScreen>

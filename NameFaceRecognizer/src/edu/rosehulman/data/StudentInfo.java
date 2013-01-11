@@ -1,14 +1,16 @@
 package edu.rosehulman.data;
 
+import android.graphics.Bitmap;
+
 public class StudentInfo {
 
 	private int ID;
-	private String image;
-	private String firstName;
-	private String lastName;
-	private String nickName;
-	private String course;
-	private String note;
+	private Bitmap image;
+	private String firstName = "";
+	private String lastName = "";
+	private String nickName = "";
+	private String course = "";
+	private String note = "";
 	private int numGuessedCorrect;
 	private int numGuessedTotal;
 	
@@ -18,6 +20,15 @@ public class StudentInfo {
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public String getName() {
+		String name = firstName + " ";
+		if (!nickName.equals("")) {
+			name += "\" " + nickName + " \" ";
+		}
+		name += lastName;
+		return name;
 	}
 	
 	public String getFirstName() {
@@ -44,11 +55,11 @@ public class StudentInfo {
 		nickName = nname;
 	}
 	
-	public String getPicture() { // not actually a string, but is now for convienience
+	public Bitmap getPicture() { // not actually a string, but is now for convienience
 		return image;
 	}
 	
-	public void setPicture(String picture) { // not actually a string, but is for convienience for now
+	public void setPicture(Bitmap picture) { // not actually a string, but is for convienience for now
 		image = picture;
 	}
 	

@@ -1,13 +1,16 @@
 package edu.rosehulman.data;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class DBAdapter {
 
@@ -17,29 +20,29 @@ public class DBAdapter {
 	private static final String ID_KEY = "id";
 	private static final int ID_COLUMN = 0;
 	private static final String FIRST_NAME_KEY = "fname";
-	private static final int FIRST_NAME_COLUMN = 2;
+	private static final int FIRST_NAME_COLUMN = 1;
 	private static final String LAST_NAME_KEY = "lname";
-	private static final int LAST_NAME_COLUMN = 3;
+	private static final int LAST_NAME_COLUMN = 2;
 	private static final String NICKNAME_KEY = "nname";
-	private static final int NICKNAME_COLUMN = 4;
+	private static final int NICKNAME_COLUMN = 3;
 	private static final String IMAGE_KEY = "picture";
-	private static final int IMAGE_COLUMN = 5;
+	private static final int IMAGE_COLUMN = 4;
 	private static final String NOTE_KEY = "note";
-	private static final int NOTE_COLUMN = 6;
+	private static final int NOTE_COLUMN = 5;
 	private static final String COURSE_KEY = "course";
-	private static final int COURSE_COLUMN = 7;
+	private static final int COURSE_COLUMN = 6;
 	private static final String NUM_GUESSED_KEY = "num_guessed";
-	private static final int NUM_GUESSED_COLUMN = 8;
+	private static final int NUM_GUESSED_COLUMN = 7;
 	private static final String NUM_TOTAL_KEY = "num_total";
-	private static final int NUM_TOTAL_COLUMN = 9;
+	private static final int NUM_TOTAL_COLUMN = 8;
 
-	private Lab8DBHelper mOpenHelper;
+	private DBHelper mOpenHelper;
 	private SQLiteDatabase mDb;
 
-	private static class Lab8DBHelper extends SQLiteOpenHelper {
+	private static class DBHelper extends SQLiteOpenHelper {
 
 		private static String CREATE_STATEMENT;
-		private static String DROP_STATEMENT = "DROP TABLE IF EXISTS"
+		private static String DROP_STATEMENT = "DROP TABLE IF EXISTS "
 				+ TABLE_NAME;
 		static {
 			StringBuilder s = new StringBuilder();
@@ -55,7 +58,7 @@ public class DBAdapter {
 			s.append(NICKNAME_KEY);
 			s.append(" TEXT, ");
 			s.append(IMAGE_KEY);
-			s.append(" TEXT, ");
+			s.append(" BLOB, ");
 			s.append(NOTE_KEY);
 			s.append(" TEXT, ");
 			s.append(COURSE_KEY);
@@ -67,7 +70,7 @@ public class DBAdapter {
 			CREATE_STATEMENT = s.toString();
 		}
 
-		public Lab8DBHelper(Context context) {
+		public DBHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
 
@@ -85,7 +88,7 @@ public class DBAdapter {
 	}
 
 	public DBAdapter(Context context) {
-		mOpenHelper = new Lab8DBHelper(context);
+		mOpenHelper = new DBHelper(context);
 	}
 
 	public void open() throws SQLiteException {
@@ -95,14 +98,19 @@ public class DBAdapter {
 	public void close() {
 		mDb.close();
 	}
+	
+	public void resetDB() {
+		mOpenHelper.onUpgrade(mDb, 1, 1);
+	}
 
 	private ContentValues getContentValuesFromStudentInfo(StudentInfo student) {
 		ContentValues rowValues = new ContentValues();
 		rowValues.put(FIRST_NAME_KEY, student.getFirstName());
 		rowValues.put(LAST_NAME_KEY, student.getLastName());
 		rowValues.put(NICKNAME_KEY, student.getNickName());
-		rowValues.put(IMAGE_KEY, student.getPicture()); // Temporarily a string
-														// for simplicity
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		student.getPicture().compress(Bitmap.CompressFormat.PNG, 100,out);
+		rowValues.put(IMAGE_KEY, out.toByteArray());
 		rowValues.put(NOTE_KEY, student.getNote());
 		rowValues.put(COURSE_KEY, student.getCourse());
 		rowValues.put(NUM_GUESSED_KEY, student.getNumGuessed());
@@ -115,9 +123,13 @@ public class DBAdapter {
 		student.setID(cursor.getInt(ID_COLUMN));
 		student.setFirstName(cursor.getString(FIRST_NAME_COLUMN));
 		student.setLastName(cursor.getString(LAST_NAME_COLUMN));
+		Log.d("TEST", cursor.getString(NICKNAME_COLUMN));
 		student.setNickName(cursor.getString(NICKNAME_COLUMN));
-		student.setPicture(cursor.getString(IMAGE_COLUMN)); // Temporarily a
-															// string
+		Log.d("TEST", "nickname set from cursor");
+		byte[] blob = cursor.getBlob(IMAGE_COLUMN);
+		Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0,blob.length, null);
+		student.setPicture(bmp);
+		Log.d("TEST", "picture set from cursor");
 		student.setNote(cursor.getString(NOTE_COLUMN));
 		student.setCourse(cursor.getString(COURSE_COLUMN));
 		student.setNumGuessed(cursor.getInt(NUM_GUESSED_COLUMN));

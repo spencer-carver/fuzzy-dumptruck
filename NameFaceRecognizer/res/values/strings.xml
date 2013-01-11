@@ -14,16 +14,12 @@
 	<string name="login_message">Please login using your Kerberos username and password</string>
 	<string name="featured_image">featured_image</string>
 	
-	<string name="spencer_id">spencer</string>
-	<string name="frank_id">frank</string>
-	<string name="dylan_id">dylan</string>
-	<string name="marina_id">marina</string>
-	<string name="dan_id">dan</string>
-	
 	<string name="username">admin</string>
 	<string name="password"></string>
 	
 	<string name="key_pref_category">PROTOTYPE SETTINGS</string>
 	<string name="key_pref">Restart Demo</string>
 	<string name="pref_summary">clear all loaded courses</string>
+	<string name="key_reload">Load Innitial Set</string>
+	<string name="reload_summary">Load the 5 members of the sample class as the DB</string>
 </resources>

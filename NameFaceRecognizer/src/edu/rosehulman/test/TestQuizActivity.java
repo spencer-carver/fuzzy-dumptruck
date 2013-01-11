@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class QuizActivity extends Activity implements OnClickListener {
+public class TestQuizActivity extends Activity implements OnClickListener {
 
 	private static final String[] STUDENTS = { "Spencer Carver", "Frank Huang",
 			"Dylan Kessler", "Marina Kraeva", "Dan Schepers", "Bob Dylan",
@@ -108,7 +108,7 @@ public class QuizActivity extends Activity implements OnClickListener {
 
 						public void onClick(DialogInterface dialog, int which) {
 							alert.dismiss();
-							Toast.makeText(QuizActivity.this,
+							Toast.makeText(TestQuizActivity.this,
 									"That was " + STUDENTS[index] + ".",
 									Toast.LENGTH_SHORT).show();
 							numSkip++;

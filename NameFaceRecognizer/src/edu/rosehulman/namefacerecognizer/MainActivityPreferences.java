@@ -22,6 +22,11 @@ public class MainActivityPreferences extends PreferenceActivity {
 			setResult(RESULT_OK, getIntent());
 			finish();
 		}
+		
+		if (preference.getKey().equals(getString(R.string.key_reload))) {
+			setResult(RESULT_FIRST_USER, getIntent());
+			finish();
+		}
 
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}

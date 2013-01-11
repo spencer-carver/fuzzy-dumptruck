@@ -1,5 +1,9 @@
 package edu.rosehulman.namefacerecognizer;
 
+import java.util.List;
+
+import edu.rosehulman.data.DBAdapter;
+import edu.rosehulman.data.StudentInfo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +19,8 @@ public class ReviewActivity extends Activity implements OnClickListener {
 	private TextView studentName;
 	private TextView studentCourse;
 	private LinearLayout filmstrip;
+	private List<StudentInfo> mStudents;
+	private DBAdapter mDBAdapter;
 	
 	
 	private int filmstrip_dimension = 150;
@@ -27,38 +33,27 @@ public class ReviewActivity extends Activity implements OnClickListener {
 		studentName = (TextView) findViewById(R.id.student_name);
 		studentCourse = (TextView) findViewById(R.id.student_course);
 		filmstrip = (LinearLayout) findViewById(R.id.filmstrip);
-		
-		//TODO: Replace with dynamic generator for real code
-		ImageView spencer = new ImageView(this);
-		spencer.setId(R.string.spencer_id);
-		spencer.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
-		spencer.setImageResource(R.drawable.spencer_angel_pic);
-		spencer.setOnClickListener(this);
-		filmstrip.addView(spencer);
-		ImageView frank = new ImageView(this);
-		frank.setId(R.string.frank_id);
-		frank.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
-		frank.setImageResource(R.drawable.frank_angel_pic);
-		frank.setOnClickListener(this);
-		filmstrip.addView(frank);
-		ImageView dylan = new ImageView(this);
-		dylan.setId(R.string.dylan_id);
-		dylan.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
-		dylan.setImageResource(R.drawable.dylan_angel_pic);
-		dylan.setOnClickListener(this);
-		filmstrip.addView(dylan);
-		ImageView marina = new ImageView(this);
-		marina.setId(R.string.marina_id);
-		marina.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
-		marina.setImageResource(R.drawable.marina_angel_pic);
-		marina.setOnClickListener(this);
-		filmstrip.addView(marina);
-		ImageView dan = new ImageView(this);
-		dan.setId(R.string.dan_id);
-		dan.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
-		dan.setImageResource(R.drawable.dan_angel_pic);
-		dan.setOnClickListener(this);
-		filmstrip.addView(dan);
+		// Open DB and pull in list of courses
+		mDBAdapter = new DBAdapter(this);
+		mDBAdapter.open();
+		mStudents = mDBAdapter.getAllStudents();  // For demo purposes.  In actual app it will be courses first
+		for (StudentInfo student : mStudents) {
+			ImageView sView = new ImageView(this);
+			sView.setId(student.getID()); // TODO get working
+			sView.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
+			sView.setImageBitmap(student.getPicture());
+			sView.setOnClickListener(this);
+			filmstrip.addView(sView);
+		}
+		StudentInfo defaultStudent = mStudents.get(0);
+		mainImage.setImageBitmap(defaultStudent.getPicture());
+		String name = defaultStudent.getFirstName() + " ";
+		if (!defaultStudent.getNickName().equals("")) {
+			name += "\" " + defaultStudent.getNickName() + " \" ";
+		}
+		name += defaultStudent.getLastName();
+		studentName.setText(name);
+		studentCourse.setText(defaultStudent.getCourse());
 	}
 
 	@Override
@@ -68,34 +63,19 @@ public class ReviewActivity extends Activity implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.string.spencer_id:
-			mainImage.setImageResource(R.drawable.spencer_angel_pic);
-			studentName.setText("Name: Spencer Carver");
-			studentCourse.setText("Course: CSSE 490");
-			break;
-		case R.string.frank_id:
-			mainImage.setImageResource(R.drawable.frank_angel_pic);
-			studentName.setText("Name: Frank Huang");
-			studentCourse.setText("Course: N/A");
-			break;
-		case R.string.dylan_id:
-			mainImage.setImageResource(R.drawable.dylan_angel_pic);
-			studentName.setText("Name: Dylan Kessler");
-			studentCourse.setText("Course: N/A");
-			break;
-		case R.string.marina_id:
-			mainImage.setImageResource(R.drawable.marina_angel_pic);
-			studentName.setText("Name: Marina Kraeva");
-			studentCourse.setText("Course: N/A");
-			break;
-		case R.string.dan_id:
-			mainImage.setImageResource(R.drawable.dan_angel_pic);
-			studentName.setText("Name: Dan Schepers");
-			studentCourse.setText("Course: N/A");
-			break;
-		default:
-			// should not get here
+		StudentInfo mStudent = new StudentInfo();
+		for (StudentInfo student : mStudents) {
+			if (student.getID() == v.getId()) {
+				mStudent = student;
+			}
 		}
+		mainImage.setImageBitmap(mStudent.getPicture());
+		String name = mStudent.getFirstName() + " ";
+		if (!mStudent.getNickName().equals("")) {
+			name += "\" " + mStudent.getNickName() + " \" ";
+		}
+		name += mStudent.getLastName();
+		studentName.setText(name);
+		studentCourse.setText(mStudent.getCourse());
 	}
 }

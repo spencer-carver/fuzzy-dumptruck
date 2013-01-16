@@ -123,13 +123,10 @@ public class DBAdapter {
 		student.setID(cursor.getInt(ID_COLUMN));
 		student.setFirstName(cursor.getString(FIRST_NAME_COLUMN));
 		student.setLastName(cursor.getString(LAST_NAME_COLUMN));
-		Log.d("TEST", cursor.getString(NICKNAME_COLUMN));
 		student.setNickName(cursor.getString(NICKNAME_COLUMN));
-		Log.d("TEST", "nickname set from cursor");
 		byte[] blob = cursor.getBlob(IMAGE_COLUMN);
 		Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0,blob.length, null);
 		student.setPicture(bmp);
-		Log.d("TEST", "picture set from cursor");
 		student.setNote(cursor.getString(NOTE_COLUMN));
 		student.setCourse(cursor.getString(COURSE_COLUMN));
 		student.setNumGuessed(cursor.getInt(NUM_GUESSED_COLUMN));

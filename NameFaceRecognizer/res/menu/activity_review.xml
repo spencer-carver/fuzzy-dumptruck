@@ -10,5 +10,10 @@
         android:title="@string/menu_help"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    
+    <item android:id="@+id/review_menu_edit"
+        android:title="@string/menu_edit"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
 
 </menu>

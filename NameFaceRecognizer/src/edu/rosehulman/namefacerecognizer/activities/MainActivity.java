@@ -1,4 +1,4 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,37 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.nameface.model.Student;
-import edu.rosehulman.nameface.model.StudentInfo;
+import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.database.DBAdapter;
+import edu.rosehulman.namefacerecognizer.model.Professor;
+import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.model.StudentInfo;
+import edu.rosehulman.namefacerecognizer.views.MainView;
 
-public class MainActivity extends Activity implements OnClickListener {
+/**
+ * We implement ViewListener because this is how we receive events from the view.
+ * The view takes user actions; The controller/activity responds to user actions
+ */
+
+public class MainActivity extends Activity implements MainView.ViewListener {
 	
-	private Button reviewButton;
-	private Button quizButton;
-	private Button downloadButton;
-	private Button exitButton;
+	private MainView view;
+	private Professor user;
 	
 	private static final int REQ_RESET_DEMO = 1;
 	private static final int REQ_DEFAULT_DB = 2;
-
-    @Override
+	
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        reviewButton = (Button) findViewById(R.id.review_button);
-        reviewButton.setOnClickListener(this);
-        quizButton = (Button) findViewById(R.id.quiz_button);
-        quizButton.setOnClickListener(this);
-        downloadButton = (Button) findViewById(R.id.download_button);
-        downloadButton.setOnClickListener(this);
-        exitButton = (Button) findViewById(R.id.exit_button);
-        exitButton.setOnClickListener(this);
+        view = new MainView(this, null);
+    	view.setViewListener(this);
+    	setContentView(view);
+
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
@@ -51,29 +49,27 @@ public class MainActivity extends Activity implements OnClickListener {
     	}
     	return false;
     }
-
-	public void onClick(View v) {
-		Intent intent = new Intent();
-		switch (v.getId()) {
-		case R.id.review_button:
-			intent = new Intent(this, ReviewActivity.class);
-			startActivity(intent);
-			break;
-		case R.id.quiz_button:
-			intent = new Intent(this, QuizActivity.class);
-			startActivity(intent);
-			break;
-		case R.id.download_button:
-			break;
-		case R.id.exit_button:
-			finish();
-			break;
-		default:
-			//should not get here
-		}
-		
+	
+	public void onReviewRequested() {
+		Intent intent = new Intent(this, ReviewActivity.class);
+		startActivity(intent);
 	}
 	
+	
+	public void onQuizRequested() {
+		Intent intent = new Intent(this, QuizActivity.class);
+		startActivity(intent);
+	}
+	
+	public void onPullStudentsRequested() {
+		// TODO: pull student data from database
+	}
+	
+	public void onExitRequested() {
+		finish();
+		
+	}
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
 		case REQ_RESET_DEMO:

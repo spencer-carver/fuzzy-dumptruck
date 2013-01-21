@@ -1,4 +1,4 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import edu.rosehulman.namefacerecognizer.R;
 
 public class LoginActivity extends Activity implements OnClickListener {
 	

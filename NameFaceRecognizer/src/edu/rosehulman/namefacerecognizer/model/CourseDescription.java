@@ -1,4 +1,4 @@
-package edu.rosehulman.nameface.model;
+package edu.rosehulman.namefacerecognizer.model;
 
 public class CourseDescription {
 	

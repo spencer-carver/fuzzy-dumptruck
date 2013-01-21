@@ -1,4 +1,4 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.nameface.model.Student;
+import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.database.DBAdapter;
+import edu.rosehulman.namefacerecognizer.model.Student;
 
 public class QuizActivity extends Activity implements OnClickListener {
 

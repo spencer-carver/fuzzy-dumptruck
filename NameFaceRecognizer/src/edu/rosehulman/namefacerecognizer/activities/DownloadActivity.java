@@ -1,5 +1,6 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
+import edu.rosehulman.namefacerecognizer.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

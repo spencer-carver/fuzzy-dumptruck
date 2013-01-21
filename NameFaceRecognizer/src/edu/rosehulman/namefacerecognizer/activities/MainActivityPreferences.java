@@ -1,5 +1,6 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
+import edu.rosehulman.namefacerecognizer.R;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;

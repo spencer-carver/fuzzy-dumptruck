@@ -1,10 +1,11 @@
-package edu.rosehulman.namefacerecognizer;
+package edu.rosehulman.namefacerecognizer.activities;
 
 import java.util.List;
 
-import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.nameface.model.Student;
-import edu.rosehulman.nameface.model.StudentInfo;
+import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.database.DBAdapter;
+import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.model.StudentInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

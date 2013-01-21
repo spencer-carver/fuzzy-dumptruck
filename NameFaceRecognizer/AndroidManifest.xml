@@ -13,15 +13,15 @@
         android:theme="@style/AppTheme"
         android:debuggable="true" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".MainActivityPreferences"
+            android:name=".activities.MainActivityPreferences"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,19 +30,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ReviewActivity"
+            android:name=".activities.ReviewActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".QuizActivity"
+            android:name=".activities.QuizActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".DownloadActivity"
+            android:name=".activities.DownloadActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".EditActivity"
+            android:name=".activities.EditActivity"
             android:label="@string/title_activity_main" >
         </activity>
     </application>

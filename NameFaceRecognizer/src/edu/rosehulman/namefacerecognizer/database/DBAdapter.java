@@ -1,11 +1,11 @@
-package edu.rosehulman.data;
+package edu.rosehulman.namefacerecognizer.database;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.rosehulman.nameface.model.Student;
-import edu.rosehulman.nameface.model.StudentInfo;
+import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.model.StudentInfo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

@@ -3,7 +3,8 @@ package edu.rosehulman.namefacerecognizer;
 import java.util.List;
 
 import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.data.StudentInfo;
+import edu.rosehulman.nameface.model.Student;
+import edu.rosehulman.nameface.model.StudentInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class ReviewActivity extends Activity implements OnClickListener {
 	private TextView studentName;
 	private TextView studentCourse;
 	private LinearLayout filmstrip;
-	private List<StudentInfo> mStudents;
+	private List<Student> mStudents;
 	private DBAdapter mDBAdapter;
 	
 	private String KEY_STUDENT_ID = "id";
@@ -42,7 +43,7 @@ public class ReviewActivity extends Activity implements OnClickListener {
 		mDBAdapter = new DBAdapter(this);
 		mDBAdapter.open();
 		mStudents = mDBAdapter.getAllStudents();  // For demo purposes.  In actual app it will be courses first
-		for (StudentInfo student : mStudents) {
+		for (Student student : mStudents) {
 			ImageView sView = new ImageView(this);
 			sView.setId(student.getID()); // TODO get working
 			sView.setLayoutParams(new LinearLayout.LayoutParams(filmstrip_dimension, filmstrip_dimension));
@@ -50,7 +51,7 @@ public class ReviewActivity extends Activity implements OnClickListener {
 			sView.setOnClickListener(this);
 			filmstrip.addView(sView);
 		}
-		StudentInfo defaultStudent = mStudents.get(0);
+		Student defaultStudent = mStudents.get(0);
 		studentID = defaultStudent.getID();
 		mainImage.setImageBitmap(defaultStudent.getPicture());
 		String name = defaultStudent.getFirstName() + " ";
@@ -81,8 +82,8 @@ public class ReviewActivity extends Activity implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-		StudentInfo mStudent = new StudentInfo();
-		for (StudentInfo student : mStudents) {
+		Student mStudent = new Student();
+		for (Student student : mStudents) {
 			if (student.getID() == v.getId()) {
 				mStudent = student;
 			}

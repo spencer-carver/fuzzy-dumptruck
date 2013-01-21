@@ -1,4 +1,4 @@
-package edu.rosehulman.data;
+package edu.rosehulman.nameface.model;
 
 import android.graphics.Bitmap;
 
@@ -11,8 +11,6 @@ public class StudentInfo {
 	private String nickName = "";
 	private String course = "";
 	private String note = "";
-	private int numGuessedCorrect;
-	private int numGuessedTotal;
 	
 	public void setID(int id) {
 		ID = id;
@@ -78,20 +76,5 @@ public class StudentInfo {
 	public void setCourse(String new_course) {
 		course = new_course;
 	}
-	
-	public int getNumGuessed() {
-		return numGuessedCorrect;
-	}
-	
-	public int getNumTotal() {
-		return numGuessedTotal;
-	}
-	
-	public void setNumGuessed(int num) {
-		numGuessedCorrect = num;
-	}
-	
-	public void setNumTotal(int num) {
-		numGuessedTotal = num;
-	}
+
 }

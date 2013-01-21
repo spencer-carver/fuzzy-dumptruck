@@ -1,7 +1,5 @@
 package edu.rosehulman.namefacerecognizer;
 
-import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.data.StudentInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -11,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import edu.rosehulman.data.DBAdapter;
+import edu.rosehulman.nameface.model.Student;
+import edu.rosehulman.nameface.model.StudentInfo;
 
 public class MainActivity extends Activity implements OnClickListener {
 	
@@ -85,37 +86,52 @@ public class MainActivity extends Activity implements OnClickListener {
 			if (resultCode == RESULT_FIRST_USER) {
 				DBAdapter mDBAdapter = new DBAdapter(this);
 				mDBAdapter.open();
-				StudentInfo spencer = new StudentInfo();
-				spencer.setFirstName("Spencer");
-				spencer.setLastName("Carver");
-				spencer.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic));
-				spencer.setCourse("CSSE490");
+				Student spencer = new Student();
+				StudentInfo spencerInfo = new StudentInfo();
+				spencerInfo.setFirstName("Spencer");
+				spencerInfo.setLastName("Carver");
+				spencerInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic));
+				spencerInfo.setCourse("CSSE490");
+				spencer.setStudentInfo(spencerInfo);
 				mDBAdapter.addStudent(spencer);
-				StudentInfo marina = new StudentInfo();
-				marina.setFirstName("Marina");
-				marina.setLastName("Kraeva");
-				marina.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.marina_angel_pic));
-				marina.setCourse("CSSE374");
+				
+				Student marina = new Student();
+				StudentInfo marinaInfo = new StudentInfo();
+				marinaInfo.setFirstName("Marina");
+				marinaInfo.setLastName("Kraeva");
+				marinaInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.marina_angel_pic));
+				marinaInfo.setCourse("CSSE374");
+				marina.setStudentInfo(marinaInfo);
 				mDBAdapter.addStudent(marina);
-				StudentInfo dylan = new StudentInfo();
-				dylan.setFirstName("Dylan");
-				dylan.setLastName("Kessler");
-				dylan.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dylan_angel_pic));
-				dylan.setCourse("CSSE374");
+				
+				Student dylan = new Student();
+				StudentInfo dylanInfo = new StudentInfo();
+				dylanInfo.setFirstName("Dylan");
+				dylanInfo.setLastName("Kessler");
+				dylanInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dylan_angel_pic));
+				dylanInfo.setCourse("CSSE374");
+				dylan.setStudentInfo(dylanInfo);
 				mDBAdapter.addStudent(dylan);
-				StudentInfo dan = new StudentInfo();
-				dan.setFirstName("Dan");
-				dan.setLastName("Schepers");
-				dan.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dan_angel_pic));
-				dan.setCourse("CSSE374");
+				
+				Student dan = new Student();
+				StudentInfo danInfo = new StudentInfo();
+				danInfo.setFirstName("Dan");
+				danInfo.setLastName("Schepers");
+				danInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dan_angel_pic));
+				danInfo.setCourse("CSSE374");
+				dan.setStudentInfo(danInfo);
 				mDBAdapter.addStudent(dan);
-				StudentInfo frank = new StudentInfo();
-				frank.setFirstName("Ziyang");
-				frank.setNickName("Frank");
-				frank.setLastName("Huang");
-				frank.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.frank_angel_pic));
-				frank.setCourse("CSSE374");
+				
+				Student frank = new Student();
+				StudentInfo frankInfo = new StudentInfo();
+				frankInfo.setFirstName("Ziyang");
+				frankInfo.setNickName("Frank");
+				frankInfo.setLastName("Huang");
+				frankInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.frank_angel_pic));
+				frankInfo.setCourse("CSSE374");
+				frank.setStudentInfo(frankInfo);
 				mDBAdapter.addStudent(frank);
+				
 				mDBAdapter.close();
 			}
 			break;

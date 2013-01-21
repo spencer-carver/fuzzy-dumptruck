@@ -15,11 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import edu.rosehulman.data.DBAdapter;
-import edu.rosehulman.data.StudentInfo;
+import edu.rosehulman.nameface.model.Student;
 
 public class QuizActivity extends Activity implements OnClickListener {
 
-	private List<StudentInfo> mStudents;
+	private List<Student> mStudents;
 	private DBAdapter mDBAdapter;
 	private ImageView featuredImage;
 	private AutoCompleteTextView nameField;
@@ -40,8 +40,8 @@ public class QuizActivity extends Activity implements OnClickListener {
 		mDBAdapter = new DBAdapter(this);
 		mDBAdapter.open();
 		mStudents = mDBAdapter.getAllStudents(); // TODO replace with settings later
-		ArrayList<String> STUDENTS = new ArrayList<String>();
-		for (StudentInfo student : mStudents) {
+		List<String> STUDENTS = new ArrayList<String>();
+		for (Student student : mStudents) {
 			STUDENTS.add(student.getName());
 		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

@@ -2,6 +2,10 @@ package edu.rosehulman.data;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
+import edu.rosehulman.nameface.model.Student;
+import edu.rosehulman.nameface.model.StudentInfo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -103,7 +107,7 @@ public class DBAdapter {
 		mOpenHelper.onUpgrade(mDb, 1, 1);
 	}
 
-	private ContentValues getContentValuesFromStudentInfo(StudentInfo student) {
+	private ContentValues getContentValuesFromStudentInfo(Student student) {
 		ContentValues rowValues = new ContentValues();
 		rowValues.put(FIRST_NAME_KEY, student.getFirstName());
 		rowValues.put(LAST_NAME_KEY, student.getLastName());
@@ -118,23 +122,26 @@ public class DBAdapter {
 		return rowValues;
 	}
 
-	private StudentInfo getStudentInfoFromCursor(Cursor cursor) {
-		StudentInfo student = new StudentInfo();
-		student.setID(cursor.getInt(ID_COLUMN));
-		student.setFirstName(cursor.getString(FIRST_NAME_COLUMN));
-		student.setLastName(cursor.getString(LAST_NAME_COLUMN));
-		student.setNickName(cursor.getString(NICKNAME_COLUMN));
+	private Student getStudentInfoFromCursor(Cursor cursor) {
+		Student student = new Student();
+		StudentInfo studentInfo = new StudentInfo();
+		studentInfo.setID(cursor.getInt(ID_COLUMN));
+		studentInfo.setFirstName(cursor.getString(FIRST_NAME_COLUMN));
+		studentInfo.setLastName(cursor.getString(LAST_NAME_COLUMN));
+		studentInfo.setNickName(cursor.getString(NICKNAME_COLUMN));
 		byte[] blob = cursor.getBlob(IMAGE_COLUMN);
 		Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0,blob.length, null);
-		student.setPicture(bmp);
-		student.setNote(cursor.getString(NOTE_COLUMN));
-		student.setCourse(cursor.getString(COURSE_COLUMN));
+		studentInfo.setPicture(bmp);
+		studentInfo.setNote(cursor.getString(NOTE_COLUMN));
+		studentInfo.setCourse(cursor.getString(COURSE_COLUMN));
+		
+		student.setStudentInfo(studentInfo);
 		student.setNumGuessed(cursor.getInt(NUM_GUESSED_COLUMN));
 		student.setNumTotal(cursor.getInt(NUM_TOTAL_COLUMN));
 		return student;
 	}
 
-	public StudentInfo addStudent(StudentInfo student) {
+	public Student addStudent(Student student) {
 		ContentValues rowValues = getContentValuesFromStudentInfo(student);
 		mDb.insert(TABLE_NAME, null, rowValues);
 		Cursor cursor = mDb.query(TABLE_NAME, new String[] { ID_KEY,
@@ -150,13 +157,13 @@ public class DBAdapter {
 				new String[] { Integer.toString(student.getID()) });
 	}
 
-	public ArrayList<StudentInfo> getAllStudents() {
-		ArrayList<StudentInfo> list = new ArrayList<StudentInfo>();
+	public List<Student> getAllStudents() {
+		ArrayList<Student> list = new ArrayList<Student>();
 		Cursor cursor = mDb.query(TABLE_NAME, null, null, null, null, null,
 				null);
 		cursor.moveToFirst();
 		for (int i = 0; i < cursor.getCount(); i++) {
-			StudentInfo student = getStudentInfoFromCursor(cursor);
+			Student student = getStudentInfoFromCursor(cursor);
 			cursor.moveToNext();
 			list.add(student);
 		}

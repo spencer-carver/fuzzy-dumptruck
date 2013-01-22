@@ -11,6 +11,10 @@ public class Review {
 		this.sectionsForReview = sections;
 	}
 	
+	public Review() {
+		this.sectionsForReview = new ArrayList<Section>();
+	}
+	
 	public List<Student> getStudentsForReview() {
 		List<Student> students = new ArrayList<Student>();
 		for (Section section : this.sectionsForReview) {
@@ -18,5 +22,11 @@ public class Review {
 		}
 		
 		return students;
+	}
+	
+	public void addSection(Section section) {
+		if(!this.sectionsForReview.contains(section)) {			
+			this.sectionsForReview.add(section);
+		}
 	}
 }

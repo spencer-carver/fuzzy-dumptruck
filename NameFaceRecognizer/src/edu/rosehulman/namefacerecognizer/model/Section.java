@@ -1,5 +1,6 @@
 package edu.rosehulman.namefacerecognizer.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Section {
 		this.term = term;
 		this.cid = cid;
 		this.professorID = professorID;
+		this.students = new ArrayList<Student>();
 	}
 	
 	public String getCourseID() {
@@ -25,5 +27,13 @@ public class Section {
 	
 	public List<Student> getStudents() {
 		return Collections.unmodifiableList(students);
+	}
+	
+	public void addStudent(Student student) {
+		students.add(student);
+	}
+	
+	public void addStudents(List<Student> newStudents) {
+		this.students.addAll(newStudents);
 	}
 }

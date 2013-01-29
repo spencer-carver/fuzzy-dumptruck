@@ -3,6 +3,7 @@ package edu.rosehulman.namefacerecognizer.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.R;
@@ -17,6 +18,10 @@ public class LoginActivity extends Activity implements ViewListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         loginView = new LoginView(this, null);
         loginView.setViewListener(this);
         setContentView(loginView);

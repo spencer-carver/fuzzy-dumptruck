@@ -37,6 +37,7 @@ public class LoginActivity extends Activity implements ViewListener {
 	public void onLoginRequested(String username, String password) {
 		if (AuthenticationService.getInstance().authenticate(username, password)) {
 			Intent intent = new Intent(this, MainActivity.class);
+			intent.putExtra("username", username);
 			startActivity(intent);
 			this.finish();
 		} else {

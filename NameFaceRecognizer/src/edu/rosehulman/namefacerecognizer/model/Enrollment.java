@@ -5,6 +5,7 @@ public class Enrollment {
 	private String SectionID;
 	private String SectionTitle;
 	private String SectionCategory;
+	private boolean selected;
 
 	public String getSectionID() {
 		return SectionID;
@@ -33,12 +34,20 @@ public class Enrollment {
 	public void parseEnrollment(String xml) {
 		//looks like: <enrollment SECTION_ID="ALL-ALL-ANGEL-ANGEL-1" SECTION_TITLE="Pathway to ANGEL" SECTION_CATEGORY="Training"/>
 		String[] split = xml.split("\"");
-		SectionID = split[1];
+		SectionCategory = split[1];
 		SectionTitle = split[3];
-		SectionCategory = split[5];
+		SectionID = split[5];
 	}
 	
 	public String toString() {
-		return "" + SectionID + ", " + SectionTitle + ", " + SectionCategory;
+		return "" + SectionTitle;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

@@ -37,9 +37,9 @@ public class ParseXML {
 	public static ArrayList<Enrollment> getCourseListing(String[] response) {
 		// for this class, there is an assumption currently being made that is the pattern '/><' will only appear in xml,and not in any of the fields
 		ArrayList<Enrollment> courses = new ArrayList<Enrollment>();
-		for (int i = 2; i < response.length - 1; i++) {
+		for (int i = response.length - 2; i > 1; i--) {
 			Enrollment course = new Enrollment();
-			course.parseEnrollment("<" + response[i] + "/>");
+			course.parseEnrollment(response[i]);
 			courses.add(course);
 		}
 		return courses;

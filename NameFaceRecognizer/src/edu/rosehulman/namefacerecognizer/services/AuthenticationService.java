@@ -23,47 +23,31 @@ public class AuthenticationService {
 		}
 		return instance;
 	}
-	private AuthenticationService() {
-		// TODO: Set-up connection?
-	}
 	
 	public boolean authenticate(String username, String password) {
-		// TODO: Authenticate with real service
-		if(username.equals("admin") || ANGELAuthentication(username, password)) { // cannot access R.string outside a Context, so hardcoding this for now
-			return true;
-		}
-		
-		return false;
+		return ANGELAuthentication(username, password);
 	}
 	
 	private boolean ANGELAuthentication(String username, String password) {
-		String requestUrl = "http://angel.rose-hulman.edu";
+		boolean validated = false;
+		String requestUrl = "http://angel.rose-hulman.edu/api/default.asp?APIaction=VALIDATE_ACCOUNT&"+"user="+username+"&password="+password;
         String method = "GET";
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<String, String>();  //currently pass through the URL, otherwise would pass here
         
-        try {
+        try {   
             String[] response = HttpRequestUtility.sendHttpRequest(requestUrl, method, params);
-            if (response != null && response.length > 0) {
-                Log.d("LDAP","RESPONSE FROM: " + requestUrl);
-                for (String line : response) {
-                    Log.d("LDAP",line);
-                }
-            }
-            
-            requestUrl = "http://angel.rose-hulman.edu/api/default.asp?APIaction=VALIDATE_ACCOUNT&user=carvers&password=chris_is_a_jerk";
-            
-            response = HttpRequestUtility.sendHttpRequest(requestUrl, method, params);
             
             if (response != null && response.length > 0) {
                 Log.d("LDAP","RESPONSE FROM: " + requestUrl);
                 for (String line : response) {
                     Log.d("LDAP",line);
                 }
+                validated = ParseXML.validateAuthentication(username, response);
             }               
         } catch (IOException ex) {
             Log.d("LDAP","ERROR: " + ex.getMessage());
         }
-		return false;
+		return validated;
 	}
 
 }

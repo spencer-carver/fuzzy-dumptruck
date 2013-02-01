@@ -8,8 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.activities.DownloadActivity;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 
 public class EnrollmentAdapter extends ArrayAdapter<Enrollment> {
@@ -37,9 +41,25 @@ public class EnrollmentAdapter extends ArrayAdapter<Enrollment> {
 		sectionName.setText(course.getSectionTitle());
 		sectionCategory.setText(course.getSectionCategory());
 		downloaded.setChecked(course.isSelected());
+		downloaded.setOnCheckedChangeListener(new OnCheckedChangeListener() { 
 
+		    public void onCheckedChanged(CompoundButton buttonView, 
+		                                            boolean isChecked) { 
+		      if (buttonView.isChecked()) { 
+		    	  ((DownloadActivity) mContext).incrementNumSelected();
+		    	  //TODO make sure the position is recorded to be kept later
+		      } 
+		      else 
+		      { 
+		    	  ((DownloadActivity) mContext).decrementNumSelected();
+		    	  //TODO make sure the position is recorded to be kept later
+		      } 
+		    }
+
+		  }); 
 		return v;
-
 	}
+	
+	
 
 }

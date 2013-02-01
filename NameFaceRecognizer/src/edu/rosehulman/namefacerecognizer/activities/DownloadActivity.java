@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import edu.rosehulman.namefacerecognizer.R;
@@ -27,8 +29,30 @@ public class DownloadActivity extends Activity implements OnClickListener {
 	private ListView mCourseListView;
 	private ArrayList<Enrollment> mCourses;
 	private EnrollmentAdapter mCourseAdapter;
+	private int mNumSelected;
+	private ArrayList<Enrollment> mSelectedCourses;
+	private Button mDownloadButton;
+	private Button mBackButton;
 
 	private static final int REQ_RESET_DEMO = 1;
+	
+	public void incrementNumSelected() {
+		if (mNumSelected == 0) {
+			mDownloadButton.setClickable(true);
+			mDownloadButton.setTextColor(getResources().getColor(R.color.black));
+		}
+		mNumSelected++;
+		mDownloadButton.setText("Download (" + mNumSelected + ")");
+	}
+	
+	public void decrementNumSelected() {
+		mNumSelected--;
+		mDownloadButton.setText("Download (" + mNumSelected + ")");
+		if (mNumSelected == 0) {
+			mDownloadButton.setClickable(false);
+			mDownloadButton.setTextColor(getResources().getColor(R.color.gray));
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +80,17 @@ public class DownloadActivity extends Activity implements OnClickListener {
 		} catch (IOException ex) {
 			Log.d("LDAP", "ERROR: " + ex.getMessage());
 		}
+		mDownloadButton = (Button) findViewById(R.id.download_button);
+		mDownloadButton.setClickable(false);
+		mDownloadButton.setTextColor(getResources().getColor(R.color.gray));
+		mBackButton = (Button) findViewById(R.id.back_button);
+		mBackButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				finish();
+			}
+			
+		});
 		mCourseListView = (ListView) findViewById(R.id.display_courses_list);
 		mCourseAdapter = new EnrollmentAdapter(this,
 				R.layout.course_listview, mCourses);

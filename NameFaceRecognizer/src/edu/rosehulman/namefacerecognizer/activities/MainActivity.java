@@ -63,6 +63,9 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 	
 	public void onPullStudentsRequested() {
 		// TODO: pull student data from database
+		Intent intent = new Intent(this, DownloadActivity.class);
+		intent.putExtra("username", this.getIntent().getStringExtra("username"));
+		startActivity(intent);
 	}
 	
 	public void onExitRequested() {

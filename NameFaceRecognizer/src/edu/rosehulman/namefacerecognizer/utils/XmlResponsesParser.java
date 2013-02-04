@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import android.util.Log;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.model.Student;
 
@@ -21,7 +22,7 @@ public class XmlResponsesParser {
 	private final static String SUCCESS_NODE_NAME = "success";
 	private final static String ENROLLMENTS_NODE_NAME = "enrollments";
 	private final static String ENROLLMENT_NODE_NAME = "enrollment";
-	private final static String ANGEL_URL = "https://angel.rose-hulman.edu/";
+	private final static String ANGEL_URL = "http://angel.rose-hulman.edu";
 	private final static String SUCCESS_TEXT = "Username and password are valid for ";
 	
 	public static boolean validateAuthentication(String username, String[] response) {
@@ -137,6 +138,7 @@ public class XmlResponsesParser {
 							// String username = ((Element)sectionNode).getAttribute("LOGINNAME");
 							String photoPath = ((Element)recordNode).getAttribute("PHOTO");
 							photoPath = ANGEL_URL + photoPath;
+							Log.d("LDAP", firstName + ", " + lastName + ", " + photoPath);
 							Student student = new Student();
 							student.setFirstName(firstName);
 							student.setLastName(lastName);

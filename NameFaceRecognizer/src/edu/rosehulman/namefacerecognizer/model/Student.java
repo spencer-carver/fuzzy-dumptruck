@@ -8,6 +8,10 @@ public class Student {
 	private int numGuessedCorrect;
 	private int numGuessedTotal;
 	
+	public Student () {
+		this.personalInfo = new StudentInfo();
+	}
+	
 	public void setStudentInfo(StudentInfo info) {
 		this.personalInfo = info;
 	}

@@ -1,6 +1,7 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,35 +17,40 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
+import edu.rosehulman.namefacerecognizer.services.DownloadService;
 import edu.rosehulman.namefacerecognizer.services.EnrollmentAdapter;
 import edu.rosehulman.namefacerecognizer.services.HttpRequestUtility;
 import edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser;
 
-public class DownloadActivity extends Activity implements OnClickListener {
+public class DownloadActivity extends Activity{
 
 	private ListView mCourseListView;
 	private List<Enrollment> mCourses;
 	private EnrollmentAdapter mCourseAdapter;
 	private int mNumSelected;
-	private List<Enrollment> mSelectedCourses;
+	private List<Enrollment> mSelectedCourses = new ArrayList<Enrollment>();
 	private Button mDownloadButton;
 	private Button mBackButton;
+	private DownloadService mDownloadService = new DownloadService();
 
 	private static final int REQ_RESET_DEMO = 1;
 	
-	public void incrementNumSelected() {
+	public void incrementNumSelected(int pos) {
 		if (mNumSelected == 0) {
 			mDownloadButton.setClickable(true);
 			mDownloadButton.setTextColor(getResources().getColor(R.color.black));
 		}
 		mNumSelected++;
 		mDownloadButton.setText("Download (" + mNumSelected + ")");
+		mSelectedCourses.add(mCourses.get(pos));
 	}
 	
-	public void decrementNumSelected() {
+	public void decrementNumSelected(int pos) {
 		mNumSelected--;
 		mDownloadButton.setText("Download (" + mNumSelected + ")");
+		mSelectedCourses.remove(mCourses.get(pos));
 		if (mNumSelected == 0) {
 			mDownloadButton.setClickable(false);
 			mDownloadButton.setTextColor(getResources().getColor(R.color.gray));
@@ -77,9 +83,23 @@ public class DownloadActivity extends Activity implements OnClickListener {
 		} catch (IOException ex) {
 			Log.d("LDAP", "ERROR: " + ex.getMessage());
 		}
+		final DBAdapter dbA = new DBAdapter(this);
 		mDownloadButton = (Button) findViewById(R.id.download_button);
 		mDownloadButton.setClickable(false);
 		mDownloadButton.setTextColor(getResources().getColor(R.color.gray));
+		mDownloadButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				dbA.open();
+				for (Enrollment e : mSelectedCourses) {
+					mDownloadService.download(e, dbA);
+				}
+				dbA.close();
+				finish();
+			}
+			
+		});
 		mBackButton = (Button) findViewById(R.id.back_button);
 		mBackButton.setOnClickListener(new OnClickListener() {
 
@@ -107,10 +127,5 @@ public class DownloadActivity extends Activity implements OnClickListener {
 			startActivityForResult(intent, REQ_RESET_DEMO);
 		}
 		return false;
-	}
-
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
 	}
 }

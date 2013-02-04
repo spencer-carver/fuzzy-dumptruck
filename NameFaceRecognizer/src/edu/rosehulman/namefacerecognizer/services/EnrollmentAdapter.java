@@ -29,7 +29,7 @@ public class EnrollmentAdapter extends ArrayAdapter<Enrollment> {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = mContext.getLayoutInflater();
 		View v = inflater.inflate(mResource, null, true);
 		TextView sectionName = (TextView) v.findViewById(R.id.sectionName);
@@ -45,12 +45,14 @@ public class EnrollmentAdapter extends ArrayAdapter<Enrollment> {
 		    public void onCheckedChanged(CompoundButton buttonView, 
 		                                            boolean isChecked) { 
 		      if (buttonView.isChecked()) { 
-		    	  ((DownloadActivity) mContext).incrementNumSelected();
+		    	  ((DownloadActivity) mContext).incrementNumSelected(position);
+		    	  mEnrollments.get(position).setSelected(true);
 		    	  //TODO make sure the position is recorded to be kept later
 		      } 
 		      else 
 		      { 
-		    	  ((DownloadActivity) mContext).decrementNumSelected();
+		    	  ((DownloadActivity) mContext).decrementNumSelected(position);
+		    	  mEnrollments.get(position).setSelected(false);
 		    	  //TODO make sure the position is recorded to be kept later
 		      } 
 		    }

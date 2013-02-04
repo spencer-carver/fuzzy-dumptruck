@@ -72,4 +72,24 @@ public class Student {
 		return this.personalInfo.getCourse();
 	}
 	
+	public void setFirstName(String firstName) {
+		this.personalInfo.setFirstName(firstName);
+	}
+	
+	public void setLastName(String lastName) {
+		this.personalInfo.setLastName(lastName);
+	}
+	
+	public void setImagePath(String path) {
+		this.personalInfo.setImagePath(path);
+	}
+	
+	public String getImagePath() {
+		return this.personalInfo.getImagePath();
+	}
+	
+	public void setPicture(Bitmap bitmap) {
+		this.personalInfo.setPicture(bitmap);
+	}
 }
+ 

@@ -6,6 +6,7 @@ public class StudentInfo {
 
 	private int ID;
 	private Bitmap image;
+	private String photoPath;
 	private String firstName = "";
 	private String lastName = "";
 	private String nickName = "";
@@ -77,4 +78,11 @@ public class StudentInfo {
 		course = new_course;
 	}
 
+	public void setImagePath(String path) {
+		this.photoPath = path;
+	}
+	
+	public String getImagePath() {
+		return this.photoPath;
+	}
 }

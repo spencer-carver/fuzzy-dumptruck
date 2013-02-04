@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.activities.DownloadActivity;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;

@@ -1,36 +1,33 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.services.EnrollmentAdapter;
 import edu.rosehulman.namefacerecognizer.services.HttpRequestUtility;
-import edu.rosehulman.namefacerecognizer.services.ParseXML;
+import edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser;
 
 public class DownloadActivity extends Activity implements OnClickListener {
 
 	private ListView mCourseListView;
-	private ArrayList<Enrollment> mCourses;
+	private List<Enrollment> mCourses;
 	private EnrollmentAdapter mCourseAdapter;
 	private int mNumSelected;
-	private ArrayList<Enrollment> mSelectedCourses;
+	private List<Enrollment> mSelectedCourses;
 	private Button mDownloadButton;
 	private Button mBackButton;
 
@@ -74,7 +71,7 @@ public class DownloadActivity extends Activity implements OnClickListener {
 				for (String line : response) {
 					Log.d("LDAP", line);
 				}
-				mCourses = ParseXML.getCourseListing(response);
+				mCourses = XmlResponsesParser.getCourseListing(response);
 				Log.d("LDAP", mCourses.toString());
 			}
 		} catch (IOException ex) {

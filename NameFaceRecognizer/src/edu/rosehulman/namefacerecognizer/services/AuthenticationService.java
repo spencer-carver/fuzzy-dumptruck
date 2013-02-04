@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser;
+
 import android.util.Log;
 
 
@@ -42,7 +44,7 @@ public class AuthenticationService {
                 for (String line : response) {
                     Log.d("LDAP",line);
                 }
-                validated = ParseXML.validateAuthentication(username, response);
+                validated = XmlResponsesParser.validateAuthentication(username, response);
             }               
         } catch (IOException ex) {
             Log.d("LDAP","ERROR: " + ex.getMessage());

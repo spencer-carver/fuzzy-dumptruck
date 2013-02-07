@@ -1,0 +1,763 @@
+<class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.activities.DownloadActivity" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/DownloadActivity.java" binary="false">    
+    <position height="248" width="231" x="2174" y="511"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.activities.MainActivity" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/MainActivity.java" binary="false">    
+    <position height="248" width="231" x="1691" y="223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.activities.LoginActivity" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/LoginActivity.java" binary="false">    
+    <position height="146" width="206" x="1449" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.activities.MainActivityPreferences" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/MainActivityPreferences.java" 
+    binary="false">    
+    <position height="129" width="329" x="1341" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.activities.QuizActivity" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/QuizActivity.java" binary="false">    
+    <position height="316" width="202" x="1731" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.activities.ReviewActivity" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/activities/ReviewActivity.java" binary="false">    
+    <position height="197" width="255" x="839" y="511"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.database.DBAdapter" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/database/DBAdapter.java" binary="false">    
+    <position height="588" width="306" x="1752" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.database.DBAdapter.DBHelper" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/database/DBAdapter.java" binary="false">    
+    <position height="146" width="214" x="1794" y="1851"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.CourseDescription" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/CourseDescription.java" binary="false">    
+    <position height="-1" width="-1" x="373" y="2139"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Enrollment" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Enrollment.java" 
+    binary="false">    
+    <position height="299" width="189" x="2408" y="1851"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="11" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Professor" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Professor.java" 
+    binary="false">    
+    <position height="316" width="203" x="596" y="511"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Quiz" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Quiz.java" 
+    binary="false">    
+    <position height="163" width="194" x="1476" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.QuizQuestion" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/QuizQuestion.java" binary="false">    
+    <position height="214" width="189" x="1460" y="1851"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="14" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Review" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Review.java" 
+    binary="false">    
+    <position height="129" width="212" x="400" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="15" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Section" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Section.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="566" y="1778"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="16" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.Student" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/Student.java" 
+    binary="false">    
+    <position height="469" width="189" x="1420" y="2190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="17" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.model.StudentInfo" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/model/StudentInfo.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="2132" y="2354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="18" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.services.AuthenticationService" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/services/AuthenticationService.java" binary="false">    
+    <position height="129" width="236" x="2613" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="19" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.services.DownloadService" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/services/DownloadService.java" binary="false">    
+    <position height="112" width="226" x="2036" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="20" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.services.EnrollmentAdapter" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/services/EnrollmentAdapter.java" binary="false">    
+    <position height="129" width="250" x="2302" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="21" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.services.HttpRequestUtility" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/services/HttpRequestUtility.java" binary="false">    
+    <position height="95" width="305" x="2554" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="22" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/utils/XmlResponsesParser.java" binary="false">    
+    <position height="248" width="247" x="2119" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="23" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.EditView" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/EditView.java" 
+    binary="false">    
+    <position height="231" width="191" x="127" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="24" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.views.EditView.EditViewListener" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/EditView.java" binary="false">    
+    <position height="95" width="255" x="42" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="25" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.views.LoginView.ViewListener" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/LoginView.java" binary="false">    
+    <position height="95" width="204" x="352" y="511"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="26" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.LoginView" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/LoginView.java" 
+    binary="false">    
+    <position height="163" width="200" x="352" y="223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="27" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.MainView" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/MainView.java" 
+    binary="false">    
+    <position height="163" width="200" x="1134" y="511"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="28" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.views.MainView.ViewListener" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/MainView.java" binary="false">    
+    <position height="129" width="188" x="1113" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="29" corner="BOTTOM_RIGHT" language="java" 
+    name="edu.rosehulman.namefacerecognizer.views.ReviewView.ViewListener" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/ReviewView.java" binary="false">    
+    <position height="61" width="188" x="1227" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="30" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.ReviewView" 
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/ReviewView.java" 
+    binary="false">    
+    <position height="163" width="192" x="839" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="31" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.StudentImageView" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/StudentImageView.java" binary="false">    
+    <position height="95" width="260" x="652" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="32" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.StudentMainView" 
+    project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/StudentMainView.java" binary="false">    
+    <position height="163" width="214" x="952" y="1223"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="33">    
+    <bendpoint x="1196" y="1223"/>    
+    <bendpoint x="1196" y="1851"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="34" name="selectedStudent"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <bendpoint x="2910" y="867"/>    
+    <bendpoint x="2910" y="1223"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="37" name="mCourses"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="40" name="view"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="42">    
+    <bendpoint x="2109" y="1851"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="43">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="44" name="personalInfo"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="47" name="loginView"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="50" name="editViewListener"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="52">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <association id="54">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="55" name="student"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <bendpoint x="348" y="867"/>    
+    <bendpoint x="348" y="1223"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="58" name="assignedSections"/>      
+      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <bendpoint x="1175" y="1851"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="61" name="student"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="64" name="mDownloadService"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="66">    
+    <bendpoint x="1721" y="511"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="67">    
+    <bendpoint x="1742" y="1851"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="68">    
+    <bendpoint x="2005" y="867"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="70">    
+    <bendpoint x="306" y="1851"/>    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="71">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="72" name="review"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="74">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <association id="75">    
+    <bendpoint x="2417" y="1223"/>    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="76" name="mEnrollments"/>      
+      <multiplicity id="77" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="78">    
+    <bendpoint x="1411" y="511"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <dependency id="79">    
+    <bendpoint x="1700" y="511"/>    
+    <bendpoint x="1700" y="867"/>    
+    <bendpoint x="1700" y="1223"/>    
+    <bendpoint x="1700" y="1851"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="80">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="81" name="courseDescription"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="83">    
+    <bendpoint x="1763" y="1851"/>    
+    <bendpoint x="1763" y="2190"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="84">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="85" name="user"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="87">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="88" name="viewListener"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="90">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="91">    
+    <bendpoint x="327" y="1223"/>    
+    <bendpoint x="327" y="1851"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="92" name="studentForEdit"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="94">    
+    <bendpoint x="1061" y="867"/>    
+    <bendpoint x="1445" y="1223"/>    
+    <bendpoint x="1429" y="1851"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="95">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="96">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="97" name="sectionsForReview"/>      
+      <multiplicity id="98" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <nesting id="100">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="29"/>  
+  </nesting>  
+  <dependency id="101">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <association id="102">    
+    <bendpoint x="1721" y="1223"/>    
+    <bendpoint x="1721" y="1851"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="103" name="mStudents"/>      
+      <multiplicity id="104" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="105">    
+    <bendpoint x="1679" y="1851"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <association id="107">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="108" name="instance"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="110">    
+    <bendpoint x="2582" y="867"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <nesting id="111">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="25"/>  
+  </nesting>  
+  <association id="112">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="113" name="editView"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="115">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="116">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="117" name="studentView"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <bendpoint x="1045" y="1851"/>    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="120" name="student"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="123" name="reviewView"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="125">    
+    <bendpoint x="919" y="1851"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="126">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <nesting id="127">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="28"/>  
+  </nesting>  
+  <association id="128">    
+    <bendpoint x="629" y="867"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="129" name="review"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="131">    
+    <bendpoint x="1963" y="511"/>    
+    <bendpoint x="1963" y="867"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="132">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="133" name="sections"/>      
+      <multiplicity id="134" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="135">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="136" name="mCourseAdapter"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="138">    
+    <bendpoint x="1525" y="511"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="139">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="140" name="mDBAdapter"/>      
+      <multiplicity id="141" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="142">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="143" name="viewListener"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="145">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="146">    
+    <bendpoint x="2435" y="223"/>    
+    <bendpoint x="2435" y="511"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="147">    
+    <bendpoint x="1082" y="867"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="148">    
+    <bendpoint x="1984" y="867"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="149">    
+    <bendpoint x="2889" y="867"/>    
+    <bendpoint x="2889" y="1223"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="150" name="mSelectedCourses"/>      
+      <multiplicity id="151" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <bendpoint x="2088" y="1223"/>    
+    <bendpoint x="2088" y="1851"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="153" name="mStudents"/>      
+      <multiplicity id="154" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="155">    
+    <bendpoint x="909" y="223"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="25"/>  
+  </realization>  
+  <nesting id="156">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <dependency id="157">    
+    <bendpoint x="369" y="867"/>    
+    <bendpoint x="369" y="1223"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="158">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <association id="159">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="160" name="mOpenHelper"/>      
+      <multiplicity id="161" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="162">    
+    <bendpoint x="2396" y="1223"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <association id="163">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="164" name="students"/>      
+      <multiplicity id="165" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="166">    
+    <bendpoint x="96" y="867"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <dependency id="167">    
+    <bendpoint x="2931" y="511"/>    
+    <bendpoint x="2931" y="867"/>    
+    <bendpoint x="2931" y="1223"/>    
+    <bendpoint x="2931" y="1851"/>    
+    <bendpoint x="2931" y="2190"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

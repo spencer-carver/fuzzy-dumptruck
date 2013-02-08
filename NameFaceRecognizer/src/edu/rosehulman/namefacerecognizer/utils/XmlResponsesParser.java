@@ -22,7 +22,6 @@ public class XmlResponsesParser {
 	private final static String SUCCESS_NODE_NAME = "success";
 	private final static String ENROLLMENTS_NODE_NAME = "enrollments";
 	private final static String ENROLLMENT_NODE_NAME = "enrollment";
-	private final static String ANGEL_URL = "http://angel.rose-hulman.edu";
 	private final static String SUCCESS_TEXT = "Username and password are valid for ";
 	
 	public static boolean validateAuthentication(String username, String[] response) {
@@ -135,13 +134,13 @@ public class XmlResponsesParser {
 						if(recordNode.getNodeType() == Element.ELEMENT_NODE && recordNode.getNodeName().equals("rec")) {
 							String firstName = ((Element)recordNode).getAttribute("FIRST_NAME");
 							String lastName = ((Element)recordNode).getAttribute("LAST_NAME");
-							// String username = ((Element)sectionNode).getAttribute("LOGINNAME");
+							String username = ((Element)recordNode).getAttribute("LOGINNAME");
 							String photoPath = ((Element)recordNode).getAttribute("PHOTO");
-							photoPath = ANGEL_URL + photoPath;
 							Log.d("LDAP", firstName + ", " + lastName + ", " + photoPath);
 							Student student = new Student();
 							student.setFirstName(firstName);
 							student.setLastName(lastName);
+							student.setUsername(username);
 							student.setImagePath(photoPath);
 							students.add(student);
 						}

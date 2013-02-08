@@ -2,6 +2,8 @@ package edu.rosehulman.namefacerecognizer.views;
 
 import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.services.PersistenceService;
+import edu.rosehulman.namefacerecognizer.utils.BitmapUtils;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -64,9 +66,10 @@ public class EditView extends RelativeLayout {
 	
 	public void setStudent(Student student) {
 		this.studentForEdit = student;
-		pictureView.setImageBitmap(studentForEdit.getPicture());
+		byte[] imageData = PersistenceService.getInstance(getContext()).getStudentImageData(studentForEdit);
+		pictureView.setImageBitmap(BitmapUtils.loadBitmap(imageData));
 		studentNameView.setText(studentForEdit.getName());
-		studentCourseView.setText(studentForEdit.getCourse());
+//		studentCourseView.setText(studentForEdit.getCourse());
 		studentNicknameView.setText(studentForEdit.getNickName());
 		studentNotesView.setText(studentForEdit.getNote());
 	}

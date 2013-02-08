@@ -2,14 +2,11 @@ package edu.rosehulman.namefacerecognizer.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.database.DBAdapter;
-import edu.rosehulman.namefacerecognizer.model.Professor;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.model.StudentInfo;
 import edu.rosehulman.namefacerecognizer.views.MainView;
@@ -22,7 +19,6 @@ import edu.rosehulman.namefacerecognizer.views.MainView;
 public class MainActivity extends Activity implements MainView.ViewListener {
 	
 	private MainView view;
-	private Professor user;
 	
 	private static final int REQ_RESET_DEMO = 1;
 	private static final int REQ_DEFAULT_DB = 2;
@@ -89,8 +85,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 				StudentInfo spencerInfo = new StudentInfo();
 				spencerInfo.setFirstName("Spencer");
 				spencerInfo.setLastName("Carver");
-				spencerInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic));
-				spencerInfo.setCourse("CSSE490");
+//				spencerInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic));
+//				spencerInfo.setCourse("CSSE490");
 				spencer.setStudentInfo(spencerInfo);
 				mDBAdapter.addStudent(spencer);
 				
@@ -98,8 +94,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 				StudentInfo marinaInfo = new StudentInfo();
 				marinaInfo.setFirstName("Marina");
 				marinaInfo.setLastName("Kraeva");
-				marinaInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.marina_angel_pic));
-				marinaInfo.setCourse("CSSE374");
+//				marinaInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.marina_angel_pic));
+//				marinaInfo.setCourse("CSSE374");
 				marina.setStudentInfo(marinaInfo);
 				mDBAdapter.addStudent(marina);
 				
@@ -107,8 +103,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 				StudentInfo dylanInfo = new StudentInfo();
 				dylanInfo.setFirstName("Dylan");
 				dylanInfo.setLastName("Kessler");
-				dylanInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dylan_angel_pic));
-				dylanInfo.setCourse("CSSE374");
+//				dylanInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dylan_angel_pic));
+//				dylanInfo.setCourse("CSSE374");
 				dylan.setStudentInfo(dylanInfo);
 				mDBAdapter.addStudent(dylan);
 				
@@ -116,8 +112,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 				StudentInfo danInfo = new StudentInfo();
 				danInfo.setFirstName("Dan");
 				danInfo.setLastName("Schepers");
-				danInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dan_angel_pic));
-				danInfo.setCourse("CSSE374");
+//				danInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dan_angel_pic));
+//				danInfo.setCourse("CSSE374");
 				dan.setStudentInfo(danInfo);
 				mDBAdapter.addStudent(dan);
 				
@@ -126,8 +122,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 				frankInfo.setFirstName("Ziyang");
 				frankInfo.setNickName("Frank");
 				frankInfo.setLastName("Huang");
-				frankInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.frank_angel_pic));
-				frankInfo.setCourse("CSSE374");
+//				frankInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.frank_angel_pic));
+//				frankInfo.setCourse("CSSE374");
 				frank.setStudentInfo(frankInfo);
 				mDBAdapter.addStudent(frank);
 				

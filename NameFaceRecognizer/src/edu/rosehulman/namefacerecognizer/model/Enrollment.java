@@ -35,11 +35,12 @@ public class Enrollment {
 		return "" + sectionTitle;
 	}
 
-	public boolean isSelected() {
+	public boolean isPersisted() {
 		return selected;
 	}
 
-	public void setSelected(boolean selected) {
+	public void setPersisted(boolean selected) {
 		this.selected = selected;
 	}
+
 }

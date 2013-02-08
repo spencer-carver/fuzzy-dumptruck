@@ -1,6 +1,5 @@
 package edu.rosehulman.namefacerecognizer.model;
 
-import android.graphics.Bitmap;
 
 public class Student {
 	
@@ -60,10 +59,6 @@ public class Student {
 		this.personalInfo.setNickName(nname);
 	}
 	
-	public Bitmap getPicture() {
-		return this.personalInfo.getPicture();
-	}
-	
 	public String getNote() {
 		return this.personalInfo.getNote();
 	}
@@ -72,16 +67,21 @@ public class Student {
 		this.personalInfo.setNote(new_note);
 	}
 	
-	public String getCourse() {
-		return this.personalInfo.getCourse();
-	}
-	
+
 	public void setFirstName(String firstName) {
 		this.personalInfo.setFirstName(firstName);
 	}
 	
 	public void setLastName(String lastName) {
 		this.personalInfo.setLastName(lastName);
+	}
+	
+	public void setUsername(String username) {
+		this.personalInfo.setUsername(username);
+	}
+	
+	public String getUsername() {
+		return this.personalInfo.getUsername();
 	}
 	
 	public void setImagePath(String path) {
@@ -91,9 +91,13 @@ public class Student {
 	public String getImagePath() {
 		return this.personalInfo.getImagePath();
 	}
-	
-	public void setPicture(Bitmap bitmap) {
-		this.personalInfo.setPicture(bitmap);
-	}
+
+	//	public Bitmap getPicture() {
+//		return this.personalInfo.getPicture();
+//	}
+//	
+//	public void setPicture(Bitmap bitmap) {
+//		this.personalInfo.setPicture(bitmap);
+//	}
 }
  

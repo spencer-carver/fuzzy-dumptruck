@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,13 +16,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.R;
-import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.services.PersistenceService;
+import edu.rosehulman.namefacerecognizer.utils.BitmapUtils;
 
 public class QuizActivity extends Activity implements OnClickListener {
 
 	private List<Student> mStudents;
-	private DBAdapter mDBAdapter;
+//	private DBAdapter mDBAdapter;
 	private ImageView featuredImage;
 	private AutoCompleteTextView nameField;
 	private Button quitButton;
@@ -38,9 +40,10 @@ public class QuizActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
-		mDBAdapter = new DBAdapter(this);
-		mDBAdapter.open();
-		mStudents = mDBAdapter.getAllStudents(); // TODO replace with settings later
+//		mDBAdapter = new DBAdapter(this);
+//		mDBAdapter.open();
+//		mStudents = mDBAdapter.getAllStudents(); // TODO replace with settings later
+		mStudents = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
 		List<String> STUDENTS = new ArrayList<String>();
 		for (Student student : mStudents) {
 			STUDENTS.add(student.getName());
@@ -82,7 +85,10 @@ public class QuizActivity extends Activity implements OnClickListener {
 			tempindex = (int) Math.round(4 * Math.random());
 		}
 		index = tempindex;
-		featuredImage.setImageBitmap(mStudents.get(index).getPicture());
+		Student newStudent = mStudents.get(index);
+		byte[] imageData = PersistenceService.getInstance(getApplicationContext()).getStudentImageData(newStudent);
+		Bitmap studentImage = BitmapUtils.loadBitmap(imageData);
+		featuredImage.setImageBitmap(studentImage);
 
 	}
 

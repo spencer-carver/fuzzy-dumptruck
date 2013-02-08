@@ -1,18 +1,16 @@
 package edu.rosehulman.namefacerecognizer.model;
 
-import android.graphics.Bitmap;
 
 public class StudentInfo {
 
 	private int ID;
-	private Bitmap image;
+//	private Bitmap image;
 	private String photoPath;
 	private String firstName = "";
 	private String lastName = "";
 	private String nickName = "";
-	private String course = "";
-	private String note = "";
-	
+	private String note;
+	private String username;
 	public void setID(int id) {
 		ID = id;
 	}
@@ -54,13 +52,13 @@ public class StudentInfo {
 		nickName = nname;
 	}
 	
-	public Bitmap getPicture() { // not actually a string, but is now for convienience
-		return image;
-	}
-	
-	public void setPicture(Bitmap picture) { // not actually a string, but is for convienience for now
-		image = picture;
-	}
+//	public Bitmap getPicture() { // not actually a string, but is now for convienience
+//		return image;
+//	}
+//	
+//	public void setPicture(Bitmap picture) { // not actually a string, but is for convienience for now
+//		image = picture;
+//	}
 	
 	public String getNote() {
 		return note;
@@ -70,14 +68,14 @@ public class StudentInfo {
 		note = new_note;
 	}
 	
-	public String getCourse() {
-		return course;
+	public String getUsername() {
+		return this.username;
 	}
 	
-	public void setCourse(String new_course) {
-		course = new_course;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
+	
 	public void setImagePath(String path) {
 		this.photoPath = path;
 	}

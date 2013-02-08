@@ -5,13 +5,14 @@ import java.util.List;
 
 public class Quiz {
 
-	private List<Section> sections;
+	private List<Enrollment> sections;
+	private List<Student> students;
 	private int numberOfQuestions;
 	private int numberCorrectAnswered;
 	private int numberSkipped;
 	private int totalTime;
 	
-	public Quiz(int numberOfQuestions, List<Section> sections) {
+	public Quiz(int numberOfQuestions, List<Enrollment> sections) {
 		this.numberOfQuestions = numberOfQuestions;
 		this.numberCorrectAnswered = 0;
 		this.numberSkipped = 0;
@@ -20,11 +21,11 @@ public class Quiz {
 	
 	public List<QuizQuestion> generateQuiz() {
 		// List of all students
-		List<Student> students = new ArrayList<Student>();
-		for (Section section : sections) {
-			students.addAll(section.getStudents());
-		}
-		
+//		List<Student> students = new ArrayList<Student>();
+//		for (Enrollment section : sections) {
+//			students.addAll(section.getStudents());
+//		}
+
 		List<QuizQuestion> quizQuesitons = new ArrayList<QuizQuestion>(numberOfQuestions);
 		// TODO: Generate quiz questions according to the algorithm
 		return quizQuesitons;

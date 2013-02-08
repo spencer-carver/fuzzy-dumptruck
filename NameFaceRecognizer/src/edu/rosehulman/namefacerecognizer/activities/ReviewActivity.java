@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import edu.rosehulman.namefacerecognizer.R;
-import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Review;
-import edu.rosehulman.namefacerecognizer.model.Section;
 import edu.rosehulman.namefacerecognizer.model.Student;
+import edu.rosehulman.namefacerecognizer.services.PersistenceService;
 import edu.rosehulman.namefacerecognizer.views.EditView;
 import edu.rosehulman.namefacerecognizer.views.ReviewView;
 
@@ -30,15 +29,17 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 		reviewView = new ReviewView(this, null);
 
 		// TODO: This should be in a separate method, getting info about the sections and students from the DB
-		DBAdapter dbAdapter = new DBAdapter(this);
-		dbAdapter.open();
+//		DBAdapter dbAdapter = new DBAdapter(this);
+//		dbAdapter.open();
+//		review = new Review();
+//		List<Student> students = dbAdapter.getAllStudents();
+//		dbAdapter.close();
+//		Section section = new Section("CSSE374-01", "201302", "CID", "boutell");
+//		section.addStudents(students);
+//		review.addSection(section);
+		List<Student> allStudents = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
 		review = new Review();
-		List<Student> students = dbAdapter.getAllStudents();
-		dbAdapter.close();
-		Section section = new Section("CSSE374-01", "201302", "CID", "boutell");
-		section.addStudents(students);
-		review.addSection(section);
-		
+		review.addStudents(allStudents);
 		reviewView.setReviewData(review);
 		setContentView(reviewView);
 	}

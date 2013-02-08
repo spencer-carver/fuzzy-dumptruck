@@ -5,28 +5,36 @@ import java.util.List;
 
 public class Review {
 
-	private List<Section> sectionsForReview;
+	private List<Enrollment> sectionsForReview;
+	private List<Student> studentsForReview;
 	
-	public Review(List<Section> sections) {
+	public Review(List<Enrollment> sections) {
+		this.studentsForReview = new ArrayList<Student>();
 		this.sectionsForReview = sections;
 	}
 	
 	public Review() {
-		this.sectionsForReview = new ArrayList<Section>();
+		this.sectionsForReview = new ArrayList<Enrollment>();
+		this.studentsForReview = new ArrayList<Student>();
 	}
 	
 	public List<Student> getStudentsForReview() {
-		List<Student> students = new ArrayList<Student>();
-		for (Section section : this.sectionsForReview) {
-			students.addAll(section.getStudents());
-		}
-		
-		return students;
+//		List<Student> students = new ArrayList<Student>();
+//		for (Enrollment section : this.sectionsForReview) {
+//			students.addAll(section.getStudents());
+//		}
+//		
+//		return students;
+		return this.studentsForReview;
 	}
 	
-	public void addSection(Section section) {
+	public void addSection(Enrollment section) {
 		if(!this.sectionsForReview.contains(section)) {			
 			this.sectionsForReview.add(section);
 		}
+	}
+	
+	public void addStudents(List<Student> students) {
+		this.studentsForReview.addAll(students);
 	}
 }

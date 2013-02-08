@@ -1,14 +1,21 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import edu.rosehulman.namefacerecognizer.R;
-import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Student;
-import edu.rosehulman.namefacerecognizer.model.StudentInfo;
+import edu.rosehulman.namefacerecognizer.services.PersistenceService;
 import edu.rosehulman.namefacerecognizer.views.MainView;
 
 /**
@@ -73,61 +80,80 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 		switch (requestCode) {
 		case REQ_RESET_DEMO:
 			if (resultCode == RESULT_OK) {
-				DBAdapter mDBAdapter = new DBAdapter(this);
-				mDBAdapter.open();
-				mDBAdapter.resetDB();
-				mDBAdapter.close();
+				PersistenceService.getInstance(getApplicationContext()).clearAllPersistedData();
 			}
 			if (resultCode == RESULT_FIRST_USER) {
-				DBAdapter mDBAdapter = new DBAdapter(this);
-				mDBAdapter.open();
+				List<Student> students = new ArrayList<Student>();
+				Map<String, byte[]> studentsPictures = new HashMap<String, byte[]>();
+				
 				Student spencer = new Student();
-				StudentInfo spencerInfo = new StudentInfo();
-				spencerInfo.setFirstName("Spencer");
-				spencerInfo.setLastName("Carver");
-//				spencerInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic));
+				spencer.setFirstName("Spencer");
+				spencer.setLastName("Carver");
+				spencer.setUsername("carvers");
 //				spencerInfo.setCourse("CSSE490");
-				spencer.setStudentInfo(spencerInfo);
-				mDBAdapter.addStudent(spencer);
+				students.add(spencer);
+				Bitmap spencerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic);
+				ByteArrayOutputStream spencerStream = new ByteArrayOutputStream();
+			    spencerBitmap.compress(Bitmap.CompressFormat.JPEG, 100, spencerStream);
+			    byte[] spencerBitmapData = spencerStream.toByteArray();
+				studentsPictures.put(spencer.getUsername(), spencerBitmapData );
 				
 				Student marina = new Student();
-				StudentInfo marinaInfo = new StudentInfo();
-				marinaInfo.setFirstName("Marina");
-				marinaInfo.setLastName("Kraeva");
+				marina.setFirstName("Marina");
+				marina.setLastName("Kraeva");
+				marina.setUsername("kraevam");
 //				marinaInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.marina_angel_pic));
 //				marinaInfo.setCourse("CSSE374");
-				marina.setStudentInfo(marinaInfo);
-				mDBAdapter.addStudent(marina);
+				students.add(marina);
+				Bitmap marinaBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic);
+				ByteArrayOutputStream marinaStream = new ByteArrayOutputStream();
+			    marinaBitmap.compress(Bitmap.CompressFormat.JPEG, 100, marinaStream);
+			    byte[] marinaBitmapData = marinaStream.toByteArray();
+				studentsPictures.put(spencer.getUsername(), marinaBitmapData );
 				
 				Student dylan = new Student();
-				StudentInfo dylanInfo = new StudentInfo();
-				dylanInfo.setFirstName("Dylan");
-				dylanInfo.setLastName("Kessler");
+				dylan.setFirstName("Dylan");
+				dylan.setLastName("Kessler");
+				dylan.setUsername("kesslerd");
 //				dylanInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dylan_angel_pic));
 //				dylanInfo.setCourse("CSSE374");
-				dylan.setStudentInfo(dylanInfo);
-				mDBAdapter.addStudent(dylan);
+				students.add(dylan);
+				Bitmap dylanBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic);
+				ByteArrayOutputStream dylanStream = new ByteArrayOutputStream();
+			    dylanBitmap.compress(Bitmap.CompressFormat.JPEG, 100, dylanStream);
+			    byte[] dylanBitmapData = dylanStream.toByteArray();
+				studentsPictures.put(spencer.getUsername(), dylanBitmapData );
 				
 				Student dan = new Student();
-				StudentInfo danInfo = new StudentInfo();
-				danInfo.setFirstName("Dan");
-				danInfo.setLastName("Schepers");
+				dan.setFirstName("Dan");
+				dan.setLastName("Schepers");
+				dan.setUsername("schepers");
 //				danInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.dan_angel_pic));
 //				danInfo.setCourse("CSSE374");
-				dan.setStudentInfo(danInfo);
-				mDBAdapter.addStudent(dan);
-				
+				students.add(dan);
+				Bitmap danBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic);
+				ByteArrayOutputStream danStream = new ByteArrayOutputStream();
+			    danBitmap.compress(Bitmap.CompressFormat.JPEG, 100, danStream);
+			    byte[] danBitmapData = danStream.toByteArray();
+				studentsPictures.put(spencer.getUsername(), danBitmapData );
+
 				Student frank = new Student();
-				StudentInfo frankInfo = new StudentInfo();
-				frankInfo.setFirstName("Ziyang");
-				frankInfo.setNickName("Frank");
-				frankInfo.setLastName("Huang");
+				frank.setFirstName("Ziyang");
+				frank.setNickName("Frank");
+				frank.setLastName("Huang");
+				frank.setUsername("huangz");
 //				frankInfo.setPicture(BitmapFactory.decodeResource(getResources(), R.drawable.frank_angel_pic));
 //				frankInfo.setCourse("CSSE374");
-				frank.setStudentInfo(frankInfo);
-				mDBAdapter.addStudent(frank);
+				students.add(frank);
+				Bitmap frankBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spencer_angel_pic);
+				ByteArrayOutputStream frankStream = new ByteArrayOutputStream();
+			    frankBitmap.compress(Bitmap.CompressFormat.JPEG, 100, frankStream);
+			    byte[] frankBitmapData = frankStream.toByteArray();
+				studentsPictures.put(spencer.getUsername(), frankBitmapData );
+
+				PersistenceService.getInstance(getApplicationContext()).persistStudentInfo(students);
+				PersistenceService.getInstance(getApplicationContext()).persistStudentPictures(studentsPictures);
 				
-				mDBAdapter.close();
 			}
 			break;
 		default:

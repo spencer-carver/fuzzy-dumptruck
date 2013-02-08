@@ -78,6 +78,7 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 		// TODO: update student in DB
 		student.setNickName(newNickname);
 		student.setNote(newNotes);
+		PersistenceService.getInstance(getApplicationContext()).updateStudentInfo(student);
 		switchToReviewView(student);
 	}
 

@@ -45,6 +45,13 @@ public class PersistenceService {
 		}
 		dbA.close();
 	}
+	
+	public void updateStudentInfo(Student student) {
+		dbA.open();
+		dbA.updateStudent(student);
+		dbA.close();
+	}
+	
 	public void persistStudentPictures(Map<String, byte[]> studentPictures) {
 		dbA.open();
 		for(Entry<String, byte[]> studentPicture : studentPictures.entrySet()) {
@@ -92,5 +99,11 @@ public class PersistenceService {
 		List<Student> result = this.dbA.getAllStudents();
 		this.dbA.close();
 		return result;
+	}
+	
+	public void clearAllPersistedData() {
+		this.dbA.open();
+		this.dbA.resetDB();
+		this.dbA.close();
 	}
 }

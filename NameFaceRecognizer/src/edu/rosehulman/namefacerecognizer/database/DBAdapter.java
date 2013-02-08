@@ -1,6 +1,5 @@
 package edu.rosehulman.namefacerecognizer.database;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.model.Student;
-import edu.rosehulman.namefacerecognizer.model.StudentInfo;
 
 public class DBAdapter {
 
@@ -186,8 +184,8 @@ public class DBAdapter {
 		rowValues.put(STUDENTS_FIRST_NAME_KEY, student.getFirstName());
 		rowValues.put(STUDENTS_LAST_NAME_KEY, student.getLastName());
 		rowValues.put(STUDENTS_NICKNAME_KEY, student.getNickName());
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		rowValues.put(STUDENTS_IMAGE_KEY, out.toByteArray());
+//		ByteArrayOutputStream out = new ByteArrayOutputStream();
+//		rowValues.put(STUDENTS_IMAGE_KEY, out.toByteArray());
 		rowValues.put(STUDENTS_NOTE_KEY, student.getNote());
 		rowValues.put(STUDENTS_USERNAME_KEY, student.getUsername());
 		rowValues.put(STUDENTS_NUM_GUESSED_KEY, student.getNumGuessed());
@@ -197,18 +195,16 @@ public class DBAdapter {
 
 	private Student getStudentInfoFromCursor(Cursor cursor) {
 		Student student = new Student();
-		StudentInfo studentInfo = new StudentInfo();
-		studentInfo.setID(cursor.getInt(STUDENTS_ID_COLUMN));
-		studentInfo.setFirstName(cursor.getString(STUDENTS_FIRST_NAME_COLUMN));
-		studentInfo.setLastName(cursor.getString(STUDENTS_LAST_NAME_COLUMN));
-		studentInfo.setNickName(cursor.getString(STUDENTS_NICKNAME_COLUMN));
+		student.setID(cursor.getInt(STUDENTS_ID_COLUMN));
+		student.setFirstName(cursor.getString(STUDENTS_FIRST_NAME_COLUMN));
+		student.setLastName(cursor.getString(STUDENTS_LAST_NAME_COLUMN));
+		student.setNickName(cursor.getString(STUDENTS_NICKNAME_COLUMN));
 //		byte[] blob = cursor.getBlob(STUDENTS_IMAGE_COLUMN);
 //		Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0,blob.length, null);
 //		studentInfo.setPicture(bmp);
-		studentInfo.setNote(cursor.getString(STUDENTS_NOTE_COLUMN));
-		studentInfo.setUsername(cursor.getString(STUDENTS_USERNAME_COLUMN));
+		student.setNote(cursor.getString(STUDENTS_NOTE_COLUMN));
+		student.setUsername(cursor.getString(STUDENTS_USERNAME_COLUMN));
 		
-		student.setStudentInfo(studentInfo);
 		student.setNumGuessed(cursor.getInt(STUDENTS_NUM_GUESSED_COLUMN));
 		student.setNumTotal(cursor.getInt(STUDENTS_NUM_TOTAL_COLUMN));
 		return student;
@@ -266,6 +262,11 @@ public class DBAdapter {
 		return getStudentInfoFromCursor(cursor);
 	}
 
+	public void updateStudent(Student student) {
+		ContentValues rowValues = getContentValuesFromStudentInfo(student);
+		mDb.update(STUDENTS_TABLE_NAME, rowValues, SELECTION_BY_STUDENT_USERNAME, new String[] {student.getUsername()});
+	}
+	
 	public void deleteStudent(Student student) {
 		mDb.delete(STUDENTS_TABLE_NAME, SELECTION_BY_STUDENT_ID,
 				new String[] { Integer.toString(student.getID()) });

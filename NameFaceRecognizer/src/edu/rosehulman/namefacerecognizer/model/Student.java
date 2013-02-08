@@ -92,6 +92,10 @@ public class Student {
 		return this.personalInfo.getImagePath();
 	}
 
+	public void setID(int id) {
+		this.personalInfo.setID(id);
+	}
+
 	//	public Bitmap getPicture() {
 //		return this.personalInfo.getPicture();
 //	}

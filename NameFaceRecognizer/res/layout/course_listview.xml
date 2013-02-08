@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:enabled="false" />
 
 </RelativeLayout>

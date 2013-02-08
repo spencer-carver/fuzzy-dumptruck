@@ -85,7 +85,7 @@ public class XmlResponsesParser {
 							course.setSectionID(sectionId);
 							course.setSectionCategory(sectionCategory);
 							course.setSectionTitle(sectionTitle);
-							courses.add(course);
+							courses.add(0,course);
 						}
 					}
 				}

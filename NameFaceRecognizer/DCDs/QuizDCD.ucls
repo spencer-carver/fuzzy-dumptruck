@@ -1,7 +1,8 @@
 <class-diagram version="1.0.11" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="edu.rosehulman.namefacerecognizer.views.QuizView" 
-    project="DummyProject" file="/DummyProject/src/edu/rosehulman/namefacerecognizer/views/QuizView.java" binary="false">    
+    project="NameFaceRecognizer" file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/QuizView.java" 
+    binary="false">    
     <position height="51" width="214" x="11" y="173"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -9,8 +10,8 @@
     </display>  
   </class>  
   <interface id="2" corner="BOTTOM_RIGHT" language="java" 
-    name="edu.rosehulman.namefacerecognizer.views.QuizView.QuizViewListener" project="DummyProject" 
-    file="/DummyProject/src/edu/rosehulman/namefacerecognizer/views/QuizView.java" binary="false">    
+    name="edu.rosehulman.namefacerecognizer.views.QuizView.QuizViewListener" project="NameFaceRecognizer" 
+    file="/NameFaceRecognizer/src/edu/rosehulman/namefacerecognizer/views/QuizView.java" binary="false">    
     <position height="-1" width="-1" x="385" y="52"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      

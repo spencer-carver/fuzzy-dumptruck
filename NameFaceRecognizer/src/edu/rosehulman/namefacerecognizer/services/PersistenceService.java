@@ -8,6 +8,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
+import edu.rosehulman.namefacerecognizer.model.Quiz;
+import edu.rosehulman.namefacerecognizer.model.QuizQuestion;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.utils.BitmapUtils;
 
@@ -105,5 +107,15 @@ public class PersistenceService {
 		this.dbA.open();
 		this.dbA.resetDB();
 		this.dbA.close();
+	}
+	
+	public void persistQuizResults(Quiz quiz) {
+		// TODO: persist quiz results
+		// something like
+		for (QuizQuestion question : quiz.getAllQuestions()) {
+			if(question.wasShown()) {				
+				updateStudentInfo(question.getStudent());
+			}
+		}
 	}
 }

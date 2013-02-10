@@ -96,12 +96,25 @@ public class Student {
 		this.personalInfo.setID(id);
 	}
 
-	//	public Bitmap getPicture() {
-//		return this.personalInfo.getPicture();
-//	}
-//	
-//	public void setPicture(Bitmap bitmap) {
-//		this.personalInfo.setPicture(bitmap);
-//	}
+	public void increaseQuizzedNumber() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void increaseNumberOfSkips() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void increaseIncorrectGuesses() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void increaseCorrectGuesses() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
  

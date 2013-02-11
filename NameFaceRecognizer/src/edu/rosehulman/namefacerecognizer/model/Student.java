@@ -6,6 +6,7 @@ public class Student {
 	private StudentInfo personalInfo;
 	private int numGuessedCorrect;
 	private int numGuessedTotal;
+	private double eValue = 1.8;
 	
 	public Student () {
 		this.personalInfo = new StudentInfo();
@@ -114,6 +115,14 @@ public class Student {
 	public void increaseCorrectGuesses() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public double getEValue() {
+		return eValue;
+	}
+	
+	public void setEValue(double newE) {
+		eValue = newE;
 	}
 
 }

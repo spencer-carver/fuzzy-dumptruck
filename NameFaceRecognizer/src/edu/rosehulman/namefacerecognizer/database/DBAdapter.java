@@ -38,6 +38,8 @@ public class DBAdapter {
 	private static final int STUDENTS_NUM_GUESSED_COLUMN = 7;
 	private static final String STUDENTS_NUM_TOTAL_KEY = "num_total";
 	private static final int STUDENTS_NUM_TOTAL_COLUMN = 8;
+	private static final String STUDENTS_E_VALUE = "e_value";
+	private static final int STUDENTS_E_VALUE_COLUMN = 9;
 
 	// Sections table properties
 	private static final String SECTIONS_TABLE_NAME = "sections";
@@ -99,7 +101,9 @@ public class DBAdapter {
 			s.append(STUDENTS_NUM_GUESSED_KEY);
 			s.append(" INTEGER, ");
 			s.append(STUDENTS_NUM_TOTAL_KEY);
-			s.append(" INTEGER)");
+			s.append(" INTEGER, ");
+			s.append(STUDENTS_E_VALUE);
+			s.append(" FLOAT)");
 			CREATE_STUDENTS_STATEMENT = s.toString();
 			
 			StringBuilder sbSection = new StringBuilder();
@@ -190,6 +194,7 @@ public class DBAdapter {
 		rowValues.put(STUDENTS_USERNAME_KEY, student.getUsername());
 		rowValues.put(STUDENTS_NUM_GUESSED_KEY, student.getNumGuessed());
 		rowValues.put(STUDENTS_NUM_TOTAL_KEY, student.getNumTotal());
+		rowValues.put(STUDENTS_E_VALUE, student.getEValue());
 		return rowValues;
 	}
 
@@ -207,6 +212,7 @@ public class DBAdapter {
 		
 		student.setNumGuessed(cursor.getInt(STUDENTS_NUM_GUESSED_COLUMN));
 		student.setNumTotal(cursor.getInt(STUDENTS_NUM_TOTAL_COLUMN));
+		student.setEValue(cursor.getDouble(STUDENTS_E_VALUE_COLUMN));
 		return student;
 	}
 
@@ -256,7 +262,7 @@ public class DBAdapter {
 		mDb.insertWithOnConflict(STUDENTS_TABLE_NAME, null, rowValues, SQLiteDatabase.CONFLICT_IGNORE);
 		Cursor cursor = mDb.query(STUDENTS_TABLE_NAME, new String[] { STUDENTS_ID_KEY,
 				STUDENTS_FIRST_NAME_KEY, STUDENTS_LAST_NAME_KEY, STUDENTS_NICKNAME_KEY, STUDENTS_IMAGE_KEY,
-				STUDENTS_NOTE_KEY, STUDENTS_USERNAME_KEY, STUDENTS_NUM_GUESSED_KEY, STUDENTS_NUM_TOTAL_KEY }, null,
+				STUDENTS_NOTE_KEY, STUDENTS_USERNAME_KEY, STUDENTS_NUM_GUESSED_KEY, STUDENTS_NUM_TOTAL_KEY, STUDENTS_E_VALUE }, null,
 				null, null, null, STUDENTS_ID_KEY + " DESC", "1");
 		cursor.moveToFirst();
 		return getStudentInfoFromCursor(cursor);

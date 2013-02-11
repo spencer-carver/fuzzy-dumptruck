@@ -30,10 +30,11 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		this.setContentView(view);
 		List<Student> students = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
 		int numberOfQuizQuestions = getPreferredNumberOfQuestions();
+		//TODO: Sort students by e vals
+		//call dbadpater.updateStudent(updated student)
 		this.quiz = new Quiz(numberOfQuizQuestions, students);
 		this.view.setQuiz(quiz);
 		displayNextQuestion();
-
 	}
 	
 	private int getPreferredNumberOfQuestions() {
@@ -102,7 +103,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 				});
 		alert = build.create();
 		alert.show();
-
+		//TODO: should skipping a question change the sm2 value?
 		
 	}
 
@@ -119,7 +120,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			this.quiz.markIncorrect(currentQuestion);
 			displayNextQuestion();
 		}
-
+		//TODO: update sm2 value here
 		
 	}
 	

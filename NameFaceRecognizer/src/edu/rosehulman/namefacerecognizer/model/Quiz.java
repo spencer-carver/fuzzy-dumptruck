@@ -26,6 +26,7 @@ public class Quiz {
 	
 	private void generateQuiz(int numberOfQuestions, List<Student> students) {
 		this.quizQuestions = new ArrayList<QuizQuestion>(numberOfQuestions);
+		//implement ordering by sm2 values here
 		// TODO: Generate quiz questions according to the algorithm
 		// and put them in this.quizQuestions
 		

@@ -19,12 +19,13 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 	private static final int REQ_RESET_DEMO = 1;
 
 	private List<Enrollment> mCourses;
-	
+	private String username;
 	private DownloadView view;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.username = this.getIntent().getStringExtra("username");
 		this.view = new DownloadView(this, null);
 		this.view.setListener(this);
 		setContentView(this.view);
@@ -33,7 +34,6 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 	}
 
 	private List<Enrollment> retrieveSections() {
-		String username = this.getIntent().getStringExtra("username");
 		List<Enrollment> allSections =  RemoteDataRetrievalService.INSTANCE.getProfessorCourses(username);
 		PersistenceService.getInstance(this.getApplicationContext()).markPersistedSections(allSections);
 		return allSections;
@@ -58,10 +58,11 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 		List<Enrollment> coursesToDownload = view.getCoursesForDownload();
 		for (Enrollment e : coursesToDownload) {
 			List<Student> studentsInCourse = RemoteDataRetrievalService.INSTANCE.getStudentsForSection(e.getSectionID());
-			PersistenceService.getInstance(this.getApplicationContext()).persistSection(e);
+			PersistenceService.getInstance(this.getApplicationContext()).persistSection(e, username);
 			PersistenceService.getInstance(this.getApplicationContext()).persistStudentInfo(studentsInCourse);
 			
 			for(Student student : studentsInCourse) {
+				PersistenceService.getInstance(getApplicationContext()).addStudentToSection(e, student);
 				byte[] pictureData = RemoteDataRetrievalService.INSTANCE.getBitmapFromURL(student.getImagePath());
 				PersistenceService.getInstance(this.getApplicationContext()).persistStudentPicture(student.getUsername(), pictureData);
 			}

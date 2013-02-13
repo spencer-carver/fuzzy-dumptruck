@@ -1,6 +1,9 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -37,11 +40,22 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 //		Section section = new Section("CSSE374-01", "201302", "CID", "boutell");
 //		section.addStudents(students);
 //		review.addSection(section);
-		List<Student> allStudents = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
+		List<Student> students = getStudentsForReview();
 		review = new Review();
-		review.addStudents(allStudents);
+		review.addStudents(students);
 		reviewView.setReviewData(review);
 		setContentView(reviewView);
+	}
+
+	private List<Student> getStudentsForReview() {
+		List<String> sectionIDs = this.getIntent().getStringArrayListExtra(MainActivity.SECTION_IDS);
+		Set<Student> allStudents = new HashSet<Student>();
+		for (String sectionID : sectionIDs) {
+			List<Student> sectionStudents = PersistenceService.getInstance(getApplicationContext()).getStudentsForSection(sectionID);
+			allStudents.addAll(sectionStudents);
+		}
+		List<Student> students = new ArrayList<Student>(allStudents);
+		return students;
 	}
 
 	@Override

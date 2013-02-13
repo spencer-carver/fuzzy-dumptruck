@@ -7,16 +7,22 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.services.PersistenceService;
 import edu.rosehulman.namefacerecognizer.views.MainView;
+import edu.rosehulman.namefacerecognizer.views.SectionsDialog;
 
 /**
  * We implement ViewListener because this is how we receive events from the view.
@@ -24,11 +30,15 @@ import edu.rosehulman.namefacerecognizer.views.MainView;
  */
 
 public class MainActivity extends Activity implements MainView.ViewListener {
-	
-	private MainView view;
+		
+	public static final String SECTION_IDS = "sectionIDs";
 	
 	private static final int REQ_RESET_DEMO = 1;
 	private static final int REQ_DEFAULT_DB = 2;
+	
+	private MainView view;
+	
+	private String username;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +46,7 @@ public class MainActivity extends Activity implements MainView.ViewListener {
         view = new MainView(this, null);
     	view.setViewListener(this);
     	setContentView(view);
-
+    	this.username = this.getIntent().getStringExtra("username");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,26 +64,67 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     }
 	
 	public void onReviewRequested() {
-		Intent intent = new Intent(this, ReviewActivity.class);
-		startActivity(intent);
+		List<Enrollment> sectionsList = PersistenceService.getInstance(getApplicationContext()).getSectionsForProfessor(username);
+
+		if (sectionsList == null || sectionsList.isEmpty()) {
+			Toast.makeText(this, "No sections available. Please download sections before reviewing.",
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		showSectionsChooserDialog(sectionsList, ReviewActivity.class);
 	}
 	
-	
 	public void onQuizRequested() {
-		Intent intent = new Intent(this, QuizActivity.class);
+		List<Enrollment> sectionsList = PersistenceService.getInstance(getApplicationContext()).getSectionsForProfessor(username);
+		if (sectionsList == null || sectionsList.isEmpty()) {
+			Toast.makeText(this, "No sections available. Please download sections before quizzing.",
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		showSectionsChooserDialog(sectionsList, QuizActivity.class);
+	}
+
+	private void startNextActivity(ArrayList<String> sectionsList, Class<?> activityType) {
+		Intent intent = new Intent(this, activityType);
+		Bundle b = new Bundle();
+		b.putStringArrayList(SECTION_IDS, sectionsList);
+		intent.putExtras(b);
 		startActivity(intent);
 	}
 	
 	public void onPullStudentsRequested() {
-		// TODO: pull student data from database
 		Intent intent = new Intent(this, DownloadActivity.class);
-		intent.putExtra("username", this.getIntent().getStringExtra("username"));
+		intent.putExtra("username", username);
 		startActivity(intent);
 	}
 	
 	public void onExitRequested() {
 		finish();
 		
+	}
+	
+	private void showSectionsChooserDialog(List<Enrollment> enrollments, final Class<?> activityType) {
+		SectionsDialog dialog = new SectionsDialog(this);
+		dialog.setSections(enrollments);
+		dialog.setButton(Dialog.BUTTON_POSITIVE, "OK", new OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				SectionsDialog clickedDialog = (SectionsDialog)dialog; // should be safe since the click is made inside our custom dialog
+				ArrayList<String> sectionIDs = new ArrayList<String>(clickedDialog.getSelectedSections());
+				dialog.dismiss();
+				startNextActivity(sectionIDs, activityType);
+			}
+		});
+		dialog.setButton(Dialog.BUTTON_NEGATIVE, "Cancel", new OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		
+		dialog.show();
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

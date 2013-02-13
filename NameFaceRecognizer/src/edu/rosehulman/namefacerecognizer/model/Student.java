@@ -125,5 +125,26 @@ public class Student {
 		eValue = newE;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) 
+			return false;
+		if (o == this)
+			return true;
+		if (!(o instanceof Student))
+			return false;
+		
+		Student otherStudent = (Student) o;
+		return (otherStudent.getID() == this.getID()) ||
+				otherStudent.getUsername().equals(this.getUsername());
+	}
+	
+	@Override
+	public int hashCode() {
+		if(this.getID() > 0) {
+			return this.getID();
+		}
+		return this.getUsername().hashCode();
+	}
 }
  

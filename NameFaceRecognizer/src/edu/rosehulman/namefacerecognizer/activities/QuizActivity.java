@@ -1,6 +1,9 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,13 +31,25 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		this.view = new QuizView(this, null);
 		this.view.setListener(this);
 		this.setContentView(view);
-		List<Student> students = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
+		//List<Student> students = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
+		List<Student> students = retrieveStudentsForQuiz();
 		int numberOfQuizQuestions = getPreferredNumberOfQuestions();
 		//TODO: Sort students by e vals
 		//call dbadpater.updateStudent(updated student)
 		this.quiz = new Quiz(numberOfQuizQuestions, students);
 		this.view.setQuiz(quiz);
 		displayNextQuestion();
+	}
+
+	private List<Student> retrieveStudentsForQuiz() {
+		List<String> sectionIDs = this.getIntent().getStringArrayListExtra(MainActivity.SECTION_IDS);
+		Set<Student> allStudents = new HashSet<Student>();
+		for (String sectionID : sectionIDs) {
+			List<Student> sectionStudents = PersistenceService.getInstance(getApplicationContext()).getStudentsForSection(sectionID);
+			allStudents.addAll(sectionStudents);
+		}
+		List<Student> students = new ArrayList<Student>(allStudents);
+		return students;
 	}
 	
 	private int getPreferredNumberOfQuestions() {

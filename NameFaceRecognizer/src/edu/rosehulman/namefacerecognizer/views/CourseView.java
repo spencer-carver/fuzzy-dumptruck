@@ -39,7 +39,6 @@ public class CourseView extends RelativeLayout {
 		this.course = course;
 		this.sectionName.setText(this.course.getSectionTitle());
 		this.sectionCategory.setText(this.course.getSectionCategory());
-		// TODO: Enable after testing is done
 		// this.downloaded.setChecked(!this.course.isPersisted()); 
 	}
 	

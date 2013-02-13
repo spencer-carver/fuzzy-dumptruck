@@ -216,6 +216,15 @@ public class DBAdapter {
 		return student;
 	}
 
+	private Enrollment getEnrollmentFromCursor(Cursor cursor) {
+		Enrollment enrollment = new Enrollment();
+		enrollment.setSectionID(cursor.getString(SECTIONS_ID_COLUMN));
+		enrollment.setSectionTitle(cursor.getString(SECTIONS_TITLE_COLUMN));
+		enrollment.setSectionCategory(cursor.getString(SECTIONS_CATEGORY_COLUMN));
+		enrollment.setPersisted(true);
+		return enrollment;
+	}
+	
 	public Student getStudentByID(int id) {
 		Cursor cursor = mDb.query(STUDENTS_TABLE_NAME, null, SELECTION_BY_STUDENT_ID, 
 				new String[] {Integer.toString(id)}, null, null, null);
@@ -226,8 +235,12 @@ public class DBAdapter {
 	public Student getStudentByUsername(String username) {
 		Cursor cursor = mDb.query(STUDENTS_TABLE_NAME, null, SELECTION_BY_STUDENT_USERNAME, 
 				new String[] {username}, null, null, null);
-		Student student = getStudentInfoFromCursor(cursor);
-		return student;
+		if (cursor.moveToFirst()) {
+			Student student = getStudentInfoFromCursor(cursor);
+			return student;
+		}
+		// no such student
+		return null;
 	}
 	
 	public byte[] getStudentImageData(int studentId) {
@@ -309,8 +322,9 @@ public class DBAdapter {
 		return (cursor.getCount() == 0);
 	}
 	
-	public void addSection(Enrollment e) {
+	public void addSection(Enrollment e, String professorUsername) {
 		ContentValues rowValues = getContentValuesFromSection(e);
+		rowValues.put(SECTIONS_PROFESSOR_KEY, professorUsername);
 		mDb.insert(SECTIONS_TABLE_NAME, null, rowValues);
 	}
 	
@@ -331,17 +345,39 @@ public class DBAdapter {
 	}
 	
 	public List<Student> getStudentsForSection(String sectionID) {
-		// TODO
-		return null;
+		Cursor cursor = mDb.query(SECTION_STUDENTS_TABLE_NAME, new String[] {SECTION_STUDENTS_STUDENT_KEY},
+				SECTION_STUDENTS_SECTION_KEY + "=?", new String[] {sectionID}, null, null, null);
+		cursor.moveToFirst();
+		List<Student> result = new ArrayList<Student>();
+		while(!cursor.isAfterLast()) {
+			String studentUsername = cursor.getString(cursor.getColumnIndex(SECTION_STUDENTS_STUDENT_KEY));
+			Student student = getStudentByUsername(studentUsername);
+			result.add(student);
+			cursor.moveToNext();
+		}
+		
+		return result;
 	}
 	
 	public List<Enrollment> getSectionsForProfessor(String professorUsername) {
-		// TODO
-		return null;
+		List<Enrollment> result = new ArrayList<Enrollment>();
+		Cursor cursor = mDb.query(SECTIONS_TABLE_NAME, null, SECTIONS_PROFESSOR_KEY + "=?", new String[] {professorUsername}, null, null, null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			Enrollment enrollment = getEnrollmentFromCursor(cursor);
+			cursor.moveToNext();
+			result.add(enrollment);
+		}
+		
+		return result;
 	}
 	
 	public Enrollment getEnrollment(String enrollmentID) {
-		// TODO
-		return null;
+		Cursor cursor = mDb.query(SECTIONS_TABLE_NAME, null, SELECTION_BY_SECTION_ID, new String[] {enrollmentID}, null, null, null);
+		if(cursor.moveToFirst())
+			return getEnrollmentFromCursor(cursor);
+		else
+			return null; // no such enrollment in the DB
 	}
+	
 }

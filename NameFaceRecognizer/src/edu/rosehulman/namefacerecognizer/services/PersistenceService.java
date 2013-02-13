@@ -32,10 +32,10 @@ public class PersistenceService {
 		return instance;
 	}
 	
-	public void persistSection(Enrollment enrollment) {
+	public void persistSection(Enrollment enrollment, String professorUsername) {
 
 		dbA.open();
-		dbA.addSection(enrollment);
+		dbA.addSection(enrollment, professorUsername);
 
 		dbA.close();
 	}
@@ -45,6 +45,12 @@ public class PersistenceService {
 		for (Student s : students) {
 			dbA.addStudent(s);
 		}
+		dbA.close();
+	}
+	
+	public void addStudentToSection(Enrollment section, Student student) {
+		dbA.open();
+		dbA.addStudentToSection(section.getSectionID(), student);
 		dbA.close();
 	}
 	
@@ -103,6 +109,13 @@ public class PersistenceService {
 		return result;
 	}
 	
+	public List<Student> getStudentsForSection(String sectionID) {
+		this.dbA.open();
+		List<Student> result = this.dbA.getStudentsForSection(sectionID);
+		this.dbA.close();
+		return result;
+	}
+	
 	public void clearAllPersistedData() {
 		this.dbA.open();
 		this.dbA.resetDB();
@@ -117,5 +130,12 @@ public class PersistenceService {
 				updateStudentInfo(question.getStudent());
 			}
 		}
+	}
+	
+	public List<Enrollment> getSectionsForProfessor(String profUsername) {
+		this.dbA.open();
+		List<Enrollment> result = dbA.getSectionsForProfessor(profUsername);
+		this.dbA.close();
+		return result;
 	}
 }

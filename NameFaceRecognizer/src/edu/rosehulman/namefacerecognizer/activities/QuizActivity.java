@@ -130,16 +130,16 @@ public class QuizActivity extends Activity implements QuizViewListener {
 	}
 	
 	private void changeEvals(List<QuizQuestion> questions) {
-		int qlty;//see http://www.supermemo.com/english/ol/sm2.htm for explanation of q value
+		double qlty;//see http://www.supermemo.com/english/ol/sm2.htm for explanation of q value
 		DBAdapter adapter=new DBAdapter(this);
 		adapter.open();
 		for (int i =0; i< questions.size(); i++){
 			QuizQuestion q=questions.get(i);
 			if (q.getAnsweredCorrectly())
 				qlty=5;
+			else if (q.getSkipped())
+				qlty=3.5;
 			else if (!q.getAnsweredCorrectly())
-				qlty=2;
-			else if (q.wasShown())
 				qlty=3;
 			else
 				continue;

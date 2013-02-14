@@ -1,6 +1,8 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,11 +44,14 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 //		review.addSection(section);
 		List<Student> students = getStudentsForReview();
 		review = new Review();
+		students=sortByEval(students);
 		review.addStudents(students);
 		reviewView.setReviewData(review);
 		setContentView(reviewView);
 	}
 
+	
+	
 	private List<Student> getStudentsForReview() {
 		List<String> sectionIDs = this.getIntent().getStringArrayListExtra(MainActivity.SECTION_IDS);
 		Set<Student> allStudents = new HashSet<Student>();
@@ -110,4 +115,37 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 		}
 		editView = null; // so that it doesn't stay in memory
 	}
+
+/**
+ *  Sorts the students by their e Value
+ *  places emphasis on students that the prof doesn't know/hasn't seen 
+ *
+ * @param students
+ * @return
+ */
+private List<Student> sortByEval(List<Student> students) {
+	studentComparator comparator=new studentComparator();
+	for (int i=0; i <students.size();i++){
+		System.out.println((students.get(i).getEValue()));
+	}
+	Collections.sort(students,comparator);
+	System.out.println("after sort");
+	for (int i=0; i <students.size();i++){
+		System.out.println((students.get(i).getEValue()));
+	}
+	return students;
 }
+
+private class studentComparator implements Comparator<Student>{
+	public int compare(Student s1, Student s2){	
+		double eval1=s1.getEValue();
+		double eval2=s2.getEValue();
+		 if(eval1>eval2)
+              return +1;
+          else if(eval1<eval2)
+              return -1;
+          else
+              return 0;
+	}	
+	
+}}

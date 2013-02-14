@@ -33,10 +33,11 @@ public class Quiz {
 		// DUMMY quiz generation
 		int totalStudents = students.size();
 		System.out.print("Chosen students: ");
+		System.out.print("Chosen students: ");
 		for (int i=0; i< numberOfQuestions; i++) {
-			int index = (int)(Math.random()*totalStudents);
-			System.out.print(index + ", ");
-			QuizQuestion nextQuestion = new QuizQuestion(students.get(index));
+			//int index = (int)(Math.random()*totalStudents);
+			System.out.print(i + ", ");
+			QuizQuestion nextQuestion = new QuizQuestion(students.get(i));
 			quizQuestions.add(nextQuestion);
 		}
 		System.out.println();

@@ -1,6 +1,8 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +11,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
+import edu.rosehulman.namefacerecognizer.database.DBAdapter;
 import edu.rosehulman.namefacerecognizer.model.Quiz;
 import edu.rosehulman.namefacerecognizer.model.QuizQuestion;
 import edu.rosehulman.namefacerecognizer.model.Student;
@@ -35,10 +39,44 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		List<Student> students = retrieveStudentsForQuiz();
 		int numberOfQuizQuestions = getPreferredNumberOfQuestions();
 		//TODO: Sort students by e vals
-		//call dbadpater.updateStudent(updated student)
+		students=sortByEval(students);
 		this.quiz = new Quiz(numberOfQuizQuestions, students);
 		this.view.setQuiz(quiz);
 		displayNextQuestion();
+	}
+	
+	/**
+	 *  Sorts the students by their e Value
+	 *  places emphasis on students that the prof doesn't know/hasn't seen 
+	 *
+	 * @param students
+	 * @return
+	 */
+	private List<Student> sortByEval(List<Student> students) {
+		studentComparator comparator=new studentComparator();
+		for (int i=0; i <students.size();i++){
+			System.out.println((students.get(i).getEValue()));
+		}
+		Collections.sort(students,comparator);
+		System.out.println("after sort");
+		for (int i=0; i <students.size();i++){
+			System.out.println((students.get(i).getEValue()));
+		}
+		return students;
+	}
+	
+	private class studentComparator implements Comparator<Student>{
+		public int compare(Student s1, Student s2){	
+			double eval1=s1.getEValue();
+			double eval2=s2.getEValue();
+			 if(eval1>eval2)
+	              return +1;
+	          else if(eval1<eval2)
+	              return -1;
+	          else
+	              return 0;
+		}	
+		
 	}
 
 	private List<Student> retrieveStudentsForQuiz() {
@@ -88,8 +126,38 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	public void onQuitQuiz() {
 		showQuizStatistics();
+		changeEvals(quiz.getAllQuestions());
 	}
-
+	
+	private void changeEvals(List<QuizQuestion> questions) {
+		int qlty;//see http://www.supermemo.com/english/ol/sm2.htm for explanation of q value
+		DBAdapter adapter=new DBAdapter(this);
+		adapter.open();
+		for (int i =0; i< questions.size(); i++){
+			QuizQuestion q=questions.get(i);
+			if (q.getAnsweredCorrectly())
+				qlty=5;
+			else if (!q.getAnsweredCorrectly())
+				qlty=2;
+			else if (q.wasShown())
+				qlty=3;
+			else
+				continue;
+			Student s=q.getStudent();
+			double oldEval=s.getEValue();
+			double newEval=oldEval+(0.1-(5-qlty)*(0.08+(5-qlty)*0.02));
+			if (newEval<1.3)
+				newEval=1.3;
+			else if (newEval>2.5)
+				newEval=2.5;
+			s.setEValue(newEval);
+			adapter.updateStudent(s);
+			Log.d("CHANGED EVAL", Double.toString(newEval) );
+		}
+		adapter.close();
+	}
+	
+	
 	public void onSkipStudent() {
 		AlertDialog.Builder build = new AlertDialog.Builder(this);
 		build.setTitle("Confirm Skip");
@@ -118,7 +186,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 				});
 		alert = build.create();
 		alert.show();
-		//TODO: should skipping a question change the sm2 value?
+		
 		
 	}
 
@@ -135,7 +203,6 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			this.quiz.markIncorrect(currentQuestion);
 			displayNextQuestion();
 		}
-		//TODO: update sm2 value here
 		
 	}
 	
@@ -148,6 +215,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		else {
 
 			showQuizStatistics();
+			changeEvals(quiz.getAllQuestions());
 		}
 	}
 	

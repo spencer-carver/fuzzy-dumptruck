@@ -25,7 +25,7 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 	
 	private ReviewView reviewView;
 	private EditView editView;
-	
+	private Menu menu;
 	private Review review;
 	
 	@Override
@@ -55,6 +55,7 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		this.menu = menu;
 		getMenuInflater().inflate(R.menu.activity_review, menu);
 		return true;
 	}
@@ -96,6 +97,8 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 		editView.setListener(this);
 		editView.setStudent(student);
 		this.setContentView(editView);
+		this.menu.clear();
+		this.getMenuInflater().inflate(R.menu.activity_edit, this.menu);
 	}
 
 	private void switchToReviewView(Student selectedStudent) {
@@ -104,6 +107,8 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 			reviewView.setSelectedStudent(selectedStudent);
 		}
 		editView = null; // so that it doesn't stay in memory
+		this.menu.clear();
+		this.getMenuInflater().inflate(R.menu.activity_review, this.menu);
 	}
 
 /**

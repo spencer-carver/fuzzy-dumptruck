@@ -28,6 +28,10 @@ public class MainActivityPreferences extends PreferenceActivity {
 			setResult(RESULT_FIRST_USER, getIntent());
 			finish();
 		}
+		
+		if (preference.getKey().equals(getString(R.string.number_pref))) {
+			
+		}
 
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
 	}

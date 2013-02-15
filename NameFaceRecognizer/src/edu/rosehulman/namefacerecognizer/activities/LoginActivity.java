@@ -40,13 +40,11 @@ public class LoginActivity extends Activity implements ViewListener {
 			Intent intent = new Intent(this, MainActivity.class);
 			intent.putExtra("username", password);
 			startActivity(intent);
-			this.finish();
 		}
 		else if (AuthenticationService.getInstance().authenticate(username, password)) {
 			Intent intent = new Intent(this, MainActivity.class);
 			intent.putExtra("username", username);
 			startActivity(intent);
-			this.finish();
 		} else {
 			Toast.makeText(this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
 		}

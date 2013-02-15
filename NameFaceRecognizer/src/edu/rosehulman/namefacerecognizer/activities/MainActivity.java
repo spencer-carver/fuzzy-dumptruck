@@ -11,9 +11,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -29,7 +32,7 @@ import edu.rosehulman.namefacerecognizer.views.SectionsDialog;
  * The view takes user actions; The controller/activity responds to user actions
  */
 
-public class MainActivity extends Activity implements MainView.ViewListener {
+public class MainActivity extends Activity implements MainView.ViewListener, OnSharedPreferenceChangeListener {
 		
 	public static final String SECTION_IDS = "sectionIDs";
 	
@@ -47,6 +50,8 @@ public class MainActivity extends Activity implements MainView.ViewListener {
     	view.setViewListener(this);
     	setContentView(view);
     	this.username = this.getIntent().getStringExtra("username");
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -210,5 +215,11 @@ public class MainActivity extends Activity implements MainView.ViewListener {
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}
+	}
+
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		// TODO Auto-generated method stub
+		
 	}
 }

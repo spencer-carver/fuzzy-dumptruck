@@ -7,10 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import edu.rosehulman.namefacerecognizer.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 import edu.rosehulman.namefacerecognizer.database.DBAdapter;
@@ -92,7 +95,9 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	private int getPreferredNumberOfQuestions() {
 		// TODO: aks the user / get from preferences
-		return 6;
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		int num = prefs.getInt(getString(R.string.number_pref), 6);
+		return num;
 	}
 	//
 	//	private void getNewImage() {

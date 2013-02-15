@@ -76,7 +76,7 @@ public class QuizView extends RelativeLayout {
 	
 		progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
 		progressBar.setIndeterminate(false);
-		progressBar.setProgress(1);
+		progressBar.setProgress(0);
 	}
 
 	public void setListener(QuizViewListener listener) {

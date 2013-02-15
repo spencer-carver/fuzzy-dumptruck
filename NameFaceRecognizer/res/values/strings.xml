@@ -1,28 +1,33 @@
 <resources>
 
-    <string name="app_name">Name Face Recognizer</string>
+    <string name="app_name">Name/Face Recognizer</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_help">Help</string>
     <string name="menu_edit">Edit</string>
-    <string name="title_activity_main">Name/Face Demo</string>
+    <string name="menu_save">Save</string>
+    <string name="title_activity_main">Name/Face Recognizer</string>
 	<string name="title_image_description">Rose-Hulman Logo</string>
 	<string name="subtitle">Student Name / Face Recognition App</string>
 	<string name="review_button_text">Review Students</string>
 	<string name="quiz_button_text">Take a Quiz</string>
 	<string name="download_button_text">Download Courses</string>
 	<string name="exit_button_text">Quit</string>
+	<string name="logout_button_text">Log Out</string>
 	<string name="login_message">Please login using your Kerberos username and password</string>
 	<string name="featured_image">featured_image</string>
 	
 	<string name="username">admin</string>
-	<string name="password"></string>
 	
-	<string name="key_pref_category">PROTOTYPE SETTINGS</string>
-	<string name="key_pref">Restart Demo</string>
-	<string name="pref_summary">clear all loaded courses</string>
-	<string name="key_reload">Load Innitial Set</string>
-	<string name="reload_summary">Load the 5 members of the sample class as the DB</string>
+	<string name="quiz_pref_category">QUIZ SETTINGS</string>
+	<string name="number_pref">Number of Questions per Quiz</string>
+	<string name="number_summary">6 = default</string>
+	
+	<string name="key_pref_category">DATABASE SETTINGS</string>
+	<string name="key_pref">Clear Database</string>
+	<string name="pref_summary">delete all loaded courses</string>
+	<string name="key_reload">Load Sample Class</string>
+	<string name="reload_summary">Load the 5 member sample class to the database</string>
 	
 	<string name="spencer_name">Spencer</string>
 	<string name="spencer_course">CSSE 490</string>

@@ -2,13 +2,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory
+        android:key="@string/quiz_pref_category"
+        android:title="@string/quiz_pref_category" >
+        <Preference
+            android:key="@string/number_pref"
+            android:summary="@string/number_summary"
+            android:title="@string/number_pref" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="@string/key_pref_category"
         android:title="@string/key_pref_category" >
         <Preference
             android:key="@string/key_pref"
             android:summary="@string/pref_summary"
             android:title="@string/key_pref" />
-        
         <Preference
             android:key="@string/key_reload"
             android:summary="@string/reload_summary"

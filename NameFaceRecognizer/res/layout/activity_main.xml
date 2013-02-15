@@ -1,33 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
 
-    <ImageView
-        android:id="@+id/title_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/title_image_description"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:src="@drawable/title" />
-
-    <TextView
-        android:id="@+id/subtitle"
+    <edu.rosehulman.namefacerecognizer.views.AspectRatioImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/title_image"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
-        android:paddingLeft="40dp"
-        android:text="@string/subtitle"
-        tools:context=".MainActivity" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/title"
+        android:paddingLeft="20dip"
+        android:paddingTop="20dip"
+        android:paddingRight="20dip" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/subtitle"
+        android:layout_below="@+id/image"
         android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:paddingLeft="50dp"

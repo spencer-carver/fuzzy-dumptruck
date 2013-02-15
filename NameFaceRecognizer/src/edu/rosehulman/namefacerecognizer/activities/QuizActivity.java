@@ -116,8 +116,10 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	private int getPreferredNumberOfQuestions() {
 		// TODO: aks the user / get from preferences
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		int num = prefs.getInt(getString(R.string.number_pref), 6);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		int num = Integer.parseInt(prefs.getString(
+				getString(R.string.number_pref), "6"));
 		return num;
 	}
 	//

@@ -1,5 +1,7 @@
 package edu.rosehulman.namefacerecognizer.views;
 
+import java.util.List;
+
 import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.services.PersistenceService;
@@ -69,8 +71,28 @@ public class EditView extends RelativeLayout {
 		byte[] imageData = PersistenceService.getInstance(getContext()).getStudentImageData(studentForEdit);
 		pictureView.setImageBitmap(BitmapUtils.loadBitmap(imageData));
 		studentNameView.setText(studentForEdit.getName());
-//		studentCourseView.setText(studentForEdit.getCourse());
+
+		List<String> coursesList = studentForEdit.getStudentCourses();
+		if (coursesList.isEmpty()) {
+			studentCourseView.setText(""); 		
+		} else {
+			StringBuilder studentCourses = new StringBuilder(getCourseNumber(coursesList.get(0)));
+			for (int i=1; i<coursesList.size(); i++ ) {
+				studentCourses.append(", ");
+				studentCourses.append(getCourseNumber(coursesList.get(i)));
+			}
+			studentCourseView.setText(studentCourses);
+		}
 		studentNicknameView.setText(studentForEdit.getNickName());
 		studentNotesView.setText(studentForEdit.getNote());
+	}
+	
+	private String getCourseNumber(String fullCourseName) {
+		String courseNumber = fullCourseName.trim();
+		int indexOfSpace = courseNumber.indexOf(' ');
+		if (indexOfSpace > -1) {
+			courseNumber = courseNumber.substring(0, indexOfSpace);
+		}		
+		return courseNumber;
 	}
 }

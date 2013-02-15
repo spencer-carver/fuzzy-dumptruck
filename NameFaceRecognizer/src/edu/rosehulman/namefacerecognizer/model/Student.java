@@ -1,15 +1,28 @@
 package edu.rosehulman.namefacerecognizer.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Student {
 	
 	private StudentInfo personalInfo;
+	private List<String> studentCourses;
 	private int numGuessedCorrect;
 	private int numGuessedTotal;
 	private double eValue = 1.8;
 	
 	public Student () {
 		this.personalInfo = new StudentInfo();
+		this.studentCourses = new ArrayList<String>();
+	}
+	
+	public void addCourse(String courseName) {
+		studentCourses.add(courseName);
+	}
+	
+	public List<String> getStudentCourses() {
+		return this.studentCourses;
 	}
 	
 	public void setStudentInfo(StudentInfo info) {

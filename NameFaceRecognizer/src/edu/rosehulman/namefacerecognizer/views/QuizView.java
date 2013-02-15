@@ -1,6 +1,7 @@
 package edu.rosehulman.namefacerecognizer.views;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
@@ -86,7 +87,14 @@ public class QuizView extends RelativeLayout {
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
 		progressBar.setMax(quiz.getTotalQuestionsInQuiz());
-		Set<String> uniqueAnswers = new HashSet<String>(quiz.getAllAnswers());
+	}
+	
+	public void setAnswerChoices(List<Student> students) {
+		Set<String> uniqueAnswers = new HashSet<String>();
+		for(Student student : students) {
+			uniqueAnswers.add(student.getName());
+		}
+		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>( getContext(),
 				android.R.layout.simple_dropdown_item_1line,  uniqueAnswers.toArray(new String[0]));
 

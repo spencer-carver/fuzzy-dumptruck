@@ -229,6 +229,10 @@ public class DBAdapter {
 		Cursor cursor = mDb.query(STUDENTS_TABLE_NAME, null, SELECTION_BY_STUDENT_ID, 
 				new String[] {Integer.toString(id)}, null, null, null);
 		Student student = getStudentInfoFromCursor(cursor);
+		List<Enrollment> studentCourses = getSectionsForStudent(student.getUsername());
+		for (Enrollment e : studentCourses) {
+			student.addCourse(e.getSectionTitle());
+		}
 		return student;
 	}
 
@@ -237,6 +241,10 @@ public class DBAdapter {
 				new String[] {username}, null, null, null);
 		if (cursor.moveToFirst()) {
 			Student student = getStudentInfoFromCursor(cursor);
+			List<Enrollment> studentCourses = getSectionsForStudent(student.getUsername());
+			for (Enrollment e : studentCourses) {
+				student.addCourse(e.getSectionTitle());
+			}
 			return student;
 		}
 		// no such student
@@ -380,4 +388,18 @@ public class DBAdapter {
 			return null; // no such enrollment in the DB
 	}
 	
+	public List<Enrollment> getSectionsForStudent(String username) {
+		List<Enrollment> result = new ArrayList<Enrollment>();
+		Cursor cursor = mDb.query(SECTION_STUDENTS_TABLE_NAME, new String[] {SECTION_STUDENTS_SECTION_KEY},
+				SECTION_STUDENTS_STUDENT_KEY + "=?", new String[] {username}, null, null, null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			String enrollmentID = cursor.getString(cursor.getColumnIndex(SECTION_STUDENTS_SECTION_KEY));
+			Enrollment student = getEnrollment(enrollmentID);
+			result.add(student);
+			cursor.moveToNext();
+		}
+		
+		return result;
+	}
 }

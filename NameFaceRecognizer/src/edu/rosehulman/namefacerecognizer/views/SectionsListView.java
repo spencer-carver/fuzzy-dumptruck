@@ -1,6 +1,8 @@
 package edu.rosehulman.namefacerecognizer.views;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -90,6 +92,14 @@ public class SectionsListView extends ListView {
 	}
 
 	public void setCourses(List<Enrollment> allCourses) {
+		// sort courses by their category (courses from last quarter appear on top)
+		Collections.sort(allCourses, new Comparator<Enrollment>() {
+
+			public int compare(Enrollment lhs, Enrollment rhs) {
+				return rhs.getSectionCategory().compareTo(lhs.getSectionCategory());
+			}
+			
+		});
 		this.mCourses = allCourses;
 		this.mSelectedCourses.clear();
 		this.mCourseAdapter.clear();

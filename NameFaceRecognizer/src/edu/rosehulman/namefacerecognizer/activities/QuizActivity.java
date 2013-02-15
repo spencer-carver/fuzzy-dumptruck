@@ -5,18 +5,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
-import edu.rosehulman.namefacerecognizer.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
-import edu.rosehulman.namefacerecognizer.database.DBAdapter;
+import edu.rosehulman.namefacerecognizer.R;
 import edu.rosehulman.namefacerecognizer.model.Quiz;
 import edu.rosehulman.namefacerecognizer.model.QuizQuestion;
 import edu.rosehulman.namefacerecognizer.model.Student;
@@ -41,10 +40,10 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		//List<Student> students = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
 		List<Student> students = retrieveStudentsForQuiz();
 		int numberOfQuizQuestions = getPreferredNumberOfQuestions();
-		//TODO: Sort students by e vals
-		students=sortByEval(students);
+		students=getSMdist(sortByEval(students),numberOfQuizQuestions);
 		this.quiz = new Quiz(numberOfQuizQuestions, students);
 		this.view.setQuiz(quiz);
+		this.view.setAnswerChoices(students);
 		displayNextQuestion();
 	}
 
@@ -57,15 +56,38 @@ public class QuizActivity extends Activity implements QuizViewListener {
 	 */
 	private List<Student> sortByEval(List<Student> students) {
 		studentComparator comparator=new studentComparator();
-		for (int i=0; i <students.size();i++){
-			System.out.println((students.get(i).getEValue()));
-		}
 		Collections.sort(students,comparator);
-		System.out.println("after sort");
-		for (int i=0; i <students.size();i++){
-			System.out.println((students.get(i).getEValue()));
-		}
+			
 		return students;
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param students
+	 * @param numberOfQuizQuestions 
+	 * @return
+	 */
+	private List<Student> getSMdist(List<Student> students, int numberOfQuizQuestions) {
+		int studentSum=0;
+		for (int i = 0; i <students.size(); i ++){
+			studentSum+=students.get(i).getEValue();
+		}
+		Random r = new Random();
+		int currentSum=0;
+		List<Student> selectedStudents= new ArrayList<Student>();
+
+		for (int i =0; i <numberOfQuizQuestions; i ++){
+			double randomValue = studentSum * r.nextDouble();
+			currentSum=0;
+			int j=0;
+			while (currentSum<randomValue){
+				currentSum+=students.get(j++).getEValue();
+			}
+			selectedStudents.add(students.get(j-1));
+		}
+		
+		return selectedStudents;
 	}
 
 	private class studentComparator implements Comparator<Student>{
@@ -95,8 +117,10 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	private int getPreferredNumberOfQuestions() {
 		// TODO: aks the user / get from preferences
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		int num = prefs.getInt(getString(R.string.number_pref), 6);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		int num = Integer.parseInt(prefs.getString(
+				getString(R.string.number_pref), "6"));
 		return num;
 	}
 	//
@@ -136,7 +160,6 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	private void changeEvals(List<QuizQuestion> questions) {
 		double qlty;//see http://www.supermemo.com/english/ol/sm2.htm for explanation of q value
-
 		for (int i =0; i< questions.size(); i++){
 			QuizQuestion q=questions.get(i);
 			if (q.getAnsweredCorrectly())
@@ -154,6 +177,8 @@ public class QuizActivity extends Activity implements QuizViewListener {
 				newEval=1.3;
 			else if (newEval>2.5)
 				newEval=2.5;
+			System.out.println("student "+ i + " new EValue = " + newEval+ "quality = "+ qlty);
+
 			s.setEValue(newEval);
 		}
 	}

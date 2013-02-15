@@ -1,5 +1,7 @@
 package edu.rosehulman.namefacerecognizer.views;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
@@ -33,7 +35,27 @@ public class StudentMainView extends LinearLayout{
 		Bitmap studentImage = PersistenceService.getInstance(getContext()).getStudentPicture(student);
 		mainImage.setImageBitmap(studentImage);
 		studentNameView.setText(student.getName());
-		studentCourseView.setText(""); //student.getCourse());
+		List<String> coursesList = student.getStudentCourses();
+		if (coursesList.isEmpty()) {
+			studentCourseView.setText(""); //student.getCourse());			
+		} else {
+			StringBuilder studentCourses = new StringBuilder(getCourseNumber(coursesList.get(0)));
+			for (int i=1; i<coursesList.size(); i++ ) {
+
+				studentCourses.append(", ");
+				studentCourses.append(getCourseNumber(coursesList.get(i)));
+			}
+			studentCourseView.setText(studentCourses);
+		}
+	}
+	
+	private String getCourseNumber(String fullCourseName) {
+		String courseNumber = fullCourseName.trim();
+		int indexOfSpace = courseNumber.indexOf(' ');
+		if (indexOfSpace > -1) {
+			courseNumber = courseNumber.substring(0, indexOfSpace);
+		}		
+		return courseNumber;
 	}
 	
 	public Student getStudent() {

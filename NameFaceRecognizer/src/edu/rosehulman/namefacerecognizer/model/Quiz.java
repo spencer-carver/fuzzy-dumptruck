@@ -26,19 +26,12 @@ public class Quiz {
 	
 	private void generateQuiz(int numberOfQuestions, List<Student> students) {
 		this.quizQuestions = new ArrayList<QuizQuestion>(numberOfQuestions);
-		//implement ordering by sm2 values here
-		// TODO: Generate quiz questions according to the algorithm
-		// and put them in this.quizQuestions
-		
-		// DUMMY quiz generation
 		int totalStudents = students.size();
 		System.out.print("Chosen students: ");
-		System.out.print("Chosen students: ");
 		for (int i=0; i< numberOfQuestions; i++) {
-			//int index = (int)(Math.random()*totalStudents);
-			System.out.print(i + ", ");
 			QuizQuestion nextQuestion = new QuizQuestion(students.get(i));
 			quizQuestions.add(nextQuestion);
+			System.out.println("Eval of student "+ i +" = "+students.get(i).getEValue());
 		}
 		System.out.println();
 		

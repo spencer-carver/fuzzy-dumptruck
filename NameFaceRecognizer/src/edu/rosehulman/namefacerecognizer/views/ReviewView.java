@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -55,6 +56,7 @@ public class ReviewView extends RelativeLayout {
 	public void setSelectedStudent(Student student) {
 		this.selectedStudent = student;
 		this.studentView.setStudent(this.selectedStudent);
+		Log.d("IMG", ""+this.studentView.getHeight()+","+this.studentView.getWidth());
 	}
 
 	public Student getSelectedStudent() {

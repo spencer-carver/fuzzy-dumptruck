@@ -4,7 +4,8 @@
     <PreferenceCategory
         android:key="@string/quiz_pref_category"
         android:title="@string/quiz_pref_category" >
-        <Preference
+        <EditTextPreference
+            android:defaultValue="6"
             android:key="@string/number_pref"
             android:summary="@string/number_summary"
             android:title="@string/number_pref" />

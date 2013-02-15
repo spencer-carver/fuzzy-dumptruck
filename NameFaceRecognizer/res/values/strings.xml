@@ -16,7 +16,7 @@
 	<string name="logout_button_text">Log Out</string>
 	<string name="login_message">Please login using your Kerberos username and password</string>
 	<string name="featured_image">featured_image</string>
-	
+	<string name="invalid_pref">Invalid! The value should be an integer!</string>
 	<string name="username">admin</string>
 	
 	<string name="quiz_pref_category">QUIZ SETTINGS</string>

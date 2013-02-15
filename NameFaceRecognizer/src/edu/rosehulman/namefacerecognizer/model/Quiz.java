@@ -2,6 +2,7 @@ package edu.rosehulman.namefacerecognizer.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Quiz {
 
@@ -30,22 +31,46 @@ public class Quiz {
 			this.numberOfQuestions = totalStudents;
 		}
 		this.quizQuestions = new ArrayList<QuizQuestion>(this.numberOfQuestions);
-		//implement ordering by sm2 values here
-		// TODO: Generate quiz questions according to the algorithm
-		// and put them in this.quizQuestions
-		
-		// DUMMY quiz generation
+		List<Student> studentsForQuiz = getSMdist(students);
 
-		System.out.print("Chosen students: ");
 		System.out.print("Chosen students: ");
 		for (int i=0; i< this.numberOfQuestions; i++) {
 			//int index = (int)(Math.random()*totalStudents);
 			System.out.print(i + ", ");
-			QuizQuestion nextQuestion = new QuizQuestion(students.get(i));
+			QuizQuestion nextQuestion = new QuizQuestion(studentsForQuiz.get(i));
 			quizQuestions.add(nextQuestion);
 		}
 		System.out.println();
 		
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param students
+	 * @param numberOfQuizQuestions 
+	 * @return
+	 */
+	private List<Student> getSMdist(List<Student> students) {
+		double totalSum = 0;
+		for (int i = 0; i <students.size(); i ++){
+			totalSum += 1.0 / students.get(i).getEValue(); // smaller e-value means better chances of picking this student (low e-value means worse knowledge)
+		}
+		Random r = new Random();
+		List<Student> selectedStudents= new ArrayList<Student>();
+
+		for (int i =0; i <this.numberOfQuestions; i ++){
+			double randomValue = totalSum * r.nextDouble();
+			System.out.println("For student " + i + " random is " + randomValue + " out of " + totalSum);
+			double currentSum=0;
+			int j=0;
+			while (currentSum < randomValue){
+				currentSum += 1.0 / students.get(j++).getEValue();
+			}
+			selectedStudents.add(students.get(j-1));
+		}
+		
+		return selectedStudents;
 	}
 	
 	public boolean hasMoreQuestions() {

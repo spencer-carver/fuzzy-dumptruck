@@ -1,11 +1,8 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import android.app.Activity;
@@ -40,68 +37,10 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		//List<Student> students = PersistenceService.getInstance(getApplicationContext()).getAllStudents();
 		List<Student> students = retrieveStudentsForQuiz();
 		int numberOfQuizQuestions = getPreferredNumberOfQuestions();
-		students=getSMdist(sortByEval(students),numberOfQuizQuestions);
 		this.quiz = new Quiz(numberOfQuizQuestions, students);
 		this.view.setQuiz(quiz);
 		this.view.setAnswerChoices(students);
 		displayNextQuestion();
-	}
-
-	/**
-	 *  Sorts the students by their e Value
-	 *  places emphasis on students that the prof doesn't know/hasn't seen 
-	 *
-	 * @param students
-	 * @return
-	 */
-	private List<Student> sortByEval(List<Student> students) {
-		studentComparator comparator=new studentComparator();
-		Collections.sort(students,comparator);
-			
-		return students;
-	}
-
-	/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @param students
-	 * @param numberOfQuizQuestions 
-	 * @return
-	 */
-	private List<Student> getSMdist(List<Student> students, int numberOfQuizQuestions) {
-		int studentSum=0;
-		for (int i = 0; i <students.size(); i ++){
-			studentSum+=students.get(i).getEValue();
-		}
-		Random r = new Random();
-		int currentSum=0;
-		List<Student> selectedStudents= new ArrayList<Student>();
-
-		for (int i =0; i <numberOfQuizQuestions; i ++){
-			double randomValue = studentSum * r.nextDouble();
-			currentSum=0;
-			int j=0;
-			while (currentSum<randomValue){
-				currentSum+=students.get(j++).getEValue();
-			}
-			selectedStudents.add(students.get(j-1));
-		}
-		
-		return selectedStudents;
-	}
-
-	private class studentComparator implements Comparator<Student>{
-		public int compare(Student s1, Student s2){	
-			double eval1=s1.getEValue();
-			double eval2=s2.getEValue();
-			if(eval1>eval2)
-				return +1;
-			else if(eval1<eval2)
-				return -1;
-			else
-				return 0;
-		}	
-
 	}
 
 	private List<Student> retrieveStudentsForQuiz() {

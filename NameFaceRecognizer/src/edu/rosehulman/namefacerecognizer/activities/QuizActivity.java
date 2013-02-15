@@ -25,7 +25,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 
 	private QuizView view;
 	private AlertDialog alert;
-	
+
 	private Quiz quiz;
 	private QuizQuestion currentQuestion;
 
@@ -44,7 +44,7 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		this.view.setQuiz(quiz);
 		displayNextQuestion();
 	}
-	
+
 	/**
 	 *  Sorts the students by their e Value
 	 *  places emphasis on students that the prof doesn't know/hasn't seen 
@@ -64,19 +64,19 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		}
 		return students;
 	}
-	
+
 	private class studentComparator implements Comparator<Student>{
 		public int compare(Student s1, Student s2){	
 			double eval1=s1.getEValue();
 			double eval2=s2.getEValue();
-			 if(eval1>eval2)
-	              return +1;
-	          else if(eval1<eval2)
-	              return -1;
-	          else
-	              return 0;
+			if(eval1>eval2)
+				return +1;
+			else if(eval1<eval2)
+				return -1;
+			else
+				return 0;
 		}	
-		
+
 	}
 
 	private List<Student> retrieveStudentsForQuiz() {
@@ -89,50 +89,49 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		List<Student> students = new ArrayList<Student>(allStudents);
 		return students;
 	}
-	
+
 	private int getPreferredNumberOfQuestions() {
 		// TODO: aks the user / get from preferences
 		return 6;
 	}
-//
-//	private void getNewImage() {
-//		if (numSeen == 6) {
-//			AlertDialog.Builder build = new AlertDialog.Builder(this);
-//			build.setTitle("Quiz Results");
-//			build.setMessage("You correctly answered:" + numCorrect + " / " + numSeen +"\nYou skipped: "+ numSkip + " / " + numSeen + "\nYou incorrectly answered: "+ numIncorrect+" / " + numSeen);
-//			build.setPositiveButton("Exit Quiz",
-//					new DialogInterface.OnClickListener() {
-//
-//						public void onClick(DialogInterface dialog, int which) {
-//							alert.dismiss();
-//							finish();
-//						}
-//
-//					});
-//			alert = build.create();
-//			alert.show();
-//		}
-//		int tempindex = (int) Math.round(4 * Math.random());
-//		while (tempindex == index) {
-//			tempindex = (int) Math.round(4 * Math.random());
-//		}
-//		index = tempindex;
-//		Student newStudent = mStudents.get(index);
-//		byte[] imageData = PersistenceService.getInstance(getApplicationContext()).getStudentImageData(newStudent);
-//		Bitmap studentImage = BitmapUtils.loadBitmap(imageData);
-//		featuredImage.setImageBitmap(studentImage);
-//
-//	}
+	//
+	//	private void getNewImage() {
+	//		if (numSeen == 6) {
+	//			AlertDialog.Builder build = new AlertDialog.Builder(this);
+	//			build.setTitle("Quiz Results");
+	//			build.setMessage("You correctly answered:" + numCorrect + " / " + numSeen +"\nYou skipped: "+ numSkip + " / " + numSeen + "\nYou incorrectly answered: "+ numIncorrect+" / " + numSeen);
+	//			build.setPositiveButton("Exit Quiz",
+	//					new DialogInterface.OnClickListener() {
+	//
+	//						public void onClick(DialogInterface dialog, int which) {
+	//							alert.dismiss();
+	//							finish();
+	//						}
+	//
+	//					});
+	//			alert = build.create();
+	//			alert.show();
+	//		}
+	//		int tempindex = (int) Math.round(4 * Math.random());
+	//		while (tempindex == index) {
+	//			tempindex = (int) Math.round(4 * Math.random());
+	//		}
+	//		index = tempindex;
+	//		Student newStudent = mStudents.get(index);
+	//		byte[] imageData = PersistenceService.getInstance(getApplicationContext()).getStudentImageData(newStudent);
+	//		Bitmap studentImage = BitmapUtils.loadBitmap(imageData);
+	//		featuredImage.setImageBitmap(studentImage);
+	//
+	//	}
 
 	public void onQuitQuiz() {
 		showQuizStatistics();
 		changeEvals(quiz.getAllQuestions());
 	}
-	
+
 	private void changeEvals(List<QuizQuestion> questions) {
 		double qlty;//see http://www.supermemo.com/english/ol/sm2.htm for explanation of q value
-		DBAdapter adapter=new DBAdapter(this);
-		adapter.open();
+
 		for (int i =0; i< questions.size(); i++){
 			QuizQuestion q=questions.get(i);
 			if (q.getAnsweredCorrectly())
@@ -151,13 +150,10 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			else if (newEval>2.5)
 				newEval=2.5;
 			s.setEValue(newEval);
-			adapter.updateStudent(s);
-			Log.d("CHANGED EVAL", Double.toString(newEval) );
 		}
-		adapter.close();
 	}
-	
-	
+
+
 	public void onSkipStudent() {
 		AlertDialog.Builder build = new AlertDialog.Builder(this);
 		build.setTitle("Confirm Skip");
@@ -165,29 +161,29 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		build.setPositiveButton("Yes",
 				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						alert.dismiss();
-						String correctAnswer = currentQuestion.getAnswer();
-						Toast.makeText(QuizActivity.this,
-								"That was " + correctAnswer + ".",
-								Toast.LENGTH_SHORT).show();
-						quiz.markSkipped(currentQuestion);
-						displayNextQuestion();
-					}
+			public void onClick(DialogInterface dialog, int which) {
+				alert.dismiss();
+				String correctAnswer = currentQuestion.getAnswer();
+				Toast.makeText(QuizActivity.this,
+						"That was " + correctAnswer + ".",
+						Toast.LENGTH_SHORT).show();
+				quiz.markSkipped(currentQuestion);
+				displayNextQuestion();
+			}
 
-				});
+		});
 		build.setNegativeButton("No",
 				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface arg0, int arg1) {
-						alert.dismiss();
-					}
+			public void onClick(DialogInterface arg0, int arg1) {
+				alert.dismiss();
+			}
 
-				});
+		});
 		alert = build.create();
 		alert.show();
-		
-		
+
+
 	}
 
 	public void onGuess(String guessedName) {
@@ -203,9 +199,9 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			this.quiz.markIncorrect(currentQuestion);
 			displayNextQuestion();
 		}
-		
+
 	}
-	
+
 	private void displayNextQuestion() {
 		if(quiz.hasMoreQuestions()) {
 			QuizQuestion question = this.quiz.getNextQuestion();
@@ -213,17 +209,15 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			this.view.setDisplayedQuestion(question);
 		}
 		else {
-
-			showQuizStatistics();
-			changeEvals(quiz.getAllQuestions());
+			onQuitQuiz();
 		}
 	}
-	
+
 	private void endQuiz() {
 		PersistenceService.getInstance(getApplicationContext()).persistQuizResults(this.quiz);
 		finish();
 	}
-	
+
 	private void showQuizStatistics() {
 		AlertDialog.Builder build = new AlertDialog.Builder(this);
 		build.setTitle("Quiz Results");
@@ -233,12 +227,12 @@ public class QuizActivity extends Activity implements QuizViewListener {
 		build.setPositiveButton("Exit Quiz",
 				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						alert.dismiss();
-						endQuiz();
-					}
+			public void onClick(DialogInterface dialog, int which) {
+				alert.dismiss();
+				endQuiz();
+			}
 
-				});
+		});
 		alert = build.create();
 		alert.show();
 

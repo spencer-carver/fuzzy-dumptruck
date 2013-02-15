@@ -37,6 +37,9 @@ public class DownloadView extends RelativeLayout {
 				listener.onDownloadButtonClicked();
 			}
 		});
+		this.mDownloadButton.setClickable(false);
+		this.mDownloadButton.setTextColor(getResources().getColor(R.color.gray));
+
 		this.mBackButton = (Button) view.findViewById(R.id.back_button);
 		this.mBackButton.setOnClickListener(new OnClickListener() {
 			

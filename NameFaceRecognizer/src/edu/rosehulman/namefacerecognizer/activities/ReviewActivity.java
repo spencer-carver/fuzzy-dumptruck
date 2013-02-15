@@ -32,16 +32,6 @@ public class ReviewActivity extends Activity implements EditView.EditViewListene
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		reviewView = new ReviewView(this, null);
-
-		// TODO: This should be in a separate method, getting info about the sections and students from the DB
-//		DBAdapter dbAdapter = new DBAdapter(this);
-//		dbAdapter.open();
-//		review = new Review();
-//		List<Student> students = dbAdapter.getAllStudents();
-//		dbAdapter.close();
-//		Section section = new Section("CSSE374-01", "201302", "CID", "boutell");
-//		section.addStudents(students);
-//		review.addSection(section);
 		List<Student> students = getStudentsForReview();
 		review = new Review();
 		students=sortByEval(students);

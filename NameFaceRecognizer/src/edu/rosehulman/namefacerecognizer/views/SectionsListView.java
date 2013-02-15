@@ -60,6 +60,7 @@ public class SectionsListView extends ListView {
 	
 	private void onSectionSelected(Enrollment e) {
 		mSelectedCourses.add(e);
+		mCourseAdapter.itemSelected(mCourses.indexOf(e));
 //		incrementNumSelected();
 		if(this.listener != null) {
 			listener.onSectionSelected(e);
@@ -69,6 +70,7 @@ public class SectionsListView extends ListView {
 	private void onSectionDeselected(Enrollment e) {
 		mSelectedCourses.remove(e);
 //		decrementNumSelected();
+		mCourseAdapter.itemDeselected(mCourses.indexOf(e));
 		if(this.listener != null) {
 			listener.onSectionDeselected(e);
 		}

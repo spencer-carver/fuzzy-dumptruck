@@ -1,13 +1,18 @@
 package edu.rosehulman.namefacerecognizer.activities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import edu.rosehulman.namefacerecognizer.R;
+import edu.rosehulman.namefacerecognizer.exceptions.InternetConnectivityException;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.services.PersistenceService;
@@ -30,11 +35,22 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 		this.view.setListener(this);
 		setContentView(this.view);
 		this.mCourses = retrieveSections();
+		if(mCourses == null) {
+			// there was an exception
+			showErrorMessage();
+	        return;
+		}
 		this.view.setCourses(this.mCourses);
 	}
 
 	private List<Enrollment> retrieveSections() {
-		List<Enrollment> allSections =  RemoteDataRetrievalService.INSTANCE.getProfessorCourses(username);
+		List<Enrollment> allSections = new ArrayList<Enrollment>();
+		try {
+			allSections = RemoteDataRetrievalService.INSTANCE.getProfessorCourses(username);
+		} catch (InternetConnectivityException e) {
+			e.printStackTrace();
+			return null;
+		}
 		PersistenceService.getInstance(this.getApplicationContext()).markPersistedSections(allSections);
 		return allSections;
 	}
@@ -57,14 +73,20 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 	public void onDownloadButtonClicked() {
 		List<Enrollment> coursesToDownload = view.getCoursesForDownload();
 		for (Enrollment e : coursesToDownload) {
-			List<Student> studentsInCourse = RemoteDataRetrievalService.INSTANCE.getStudentsForSection(e.getSectionID());
-			PersistenceService.getInstance(this.getApplicationContext()).persistSection(e, username);
-			PersistenceService.getInstance(this.getApplicationContext()).persistStudentInfo(studentsInCourse);
-			
-			for(Student student : studentsInCourse) {
-				PersistenceService.getInstance(getApplicationContext()).addStudentToSection(e, student);
-				byte[] pictureData = RemoteDataRetrievalService.INSTANCE.getBitmapFromURL(student.getImagePath());
-				PersistenceService.getInstance(this.getApplicationContext()).persistStudentPicture(student.getUsername(), pictureData);
+			List<Student> studentsInCourse;
+			try {
+				studentsInCourse = RemoteDataRetrievalService.INSTANCE.getStudentsForSection(e.getSectionID());
+				PersistenceService.getInstance(this.getApplicationContext()).persistSection(e, username);
+				PersistenceService.getInstance(this.getApplicationContext()).persistStudentInfo(studentsInCourse);
+				
+				for(Student student : studentsInCourse) {
+					PersistenceService.getInstance(getApplicationContext()).addStudentToSection(e, student);
+					byte[] pictureData = RemoteDataRetrievalService.INSTANCE.getBitmapFromURL(student.getImagePath());
+					PersistenceService.getInstance(this.getApplicationContext()).persistStudentPicture(student.getUsername(), pictureData);
+				}
+			} catch (InternetConnectivityException e1) {
+				e1.printStackTrace();
+				showErrorMessage();
 			}
 		}
 		finish();
@@ -73,5 +95,18 @@ public class DownloadActivity extends Activity implements DownloadView.DownloadV
 
 	public void onBackButtonClicked() {
 		finish();
+	}
+	
+	private void showErrorMessage() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton("OK", new OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				DownloadActivity.this.finish();				
+			}
+		});
+        builder.setTitle("Error");
+        builder.setMessage("Connection error, please try later.")
+            .show();
 	}
 }

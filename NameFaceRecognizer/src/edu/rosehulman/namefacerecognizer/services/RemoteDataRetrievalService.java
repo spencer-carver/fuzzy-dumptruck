@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
+import edu.rosehulman.namefacerecognizer.exceptions.InternetConnectivityException;
 import edu.rosehulman.namefacerecognizer.model.Enrollment;
 import edu.rosehulman.namefacerecognizer.model.Student;
 import edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser;
@@ -27,7 +28,7 @@ public enum RemoteDataRetrievalService {
 		
 	}
 	
-	public List<Enrollment> getProfessorCourses(String professorUsername) {
+	public List<Enrollment> getProfessorCourses(String professorUsername) throws InternetConnectivityException {
 		List<Enrollment> result = new ArrayList<Enrollment>();
 		String requestUrl = "http://angel.rose-hulman.edu/api/default.asp?APIaction=USER_ENROLLMENTS&"
 				+ "user=" + professorUsername;
@@ -49,12 +50,13 @@ public enum RemoteDataRetrievalService {
 			}
 		} catch (IOException ex) {
 			Log.d("LDAP", "ERROR: " + ex.getMessage());
+			throw new InternetConnectivityException("Cannot download courses.");
 		}
 
 		return result;
 	}
 	
-	public List<Student> getStudentsForSection(String sectionID) {
+	public List<Student> getStudentsForSection(String sectionID) throws InternetConnectivityException {
 		List<Student> students = new ArrayList<Student>();
 		String requestUrl = "http://angel.rose-hulman.edu/api/default.asp?APIaction=SECTION_ROSTER&section=" + sectionID;
 		String method = "GET";
@@ -75,12 +77,13 @@ public enum RemoteDataRetrievalService {
 			}
 		} catch (IOException ex) {
 			Log.d("LDAP", "ERROR: " + ex.getMessage());
+			throw new InternetConnectivityException("Cannot get students for section " + sectionID);
 		}
 		
 		return students;
 	}
 	
-	public byte[] getBitmapFromURL(String src) {
+	public byte[] getBitmapFromURL(String src) throws InternetConnectivityException {
 	    try {
 	    	String pictureURL = ANGEL_URL + src;
 	        URL url = new URL(pictureURL);
@@ -106,7 +109,7 @@ public enum RemoteDataRetrievalService {
 	        return output.toByteArray();
 	    } catch (IOException e) {
 	        e.printStackTrace();
-	        return null;
+	        throw new InternetConnectivityException("Cannot download image.");
 	    }
 	}
 }

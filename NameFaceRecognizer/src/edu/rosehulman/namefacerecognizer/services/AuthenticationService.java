@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.rosehulman.namefacerecognizer.exceptions.InternetConnectivityException;
 import edu.rosehulman.namefacerecognizer.utils.XmlResponsesParser;
 
 import android.util.Log;
@@ -26,11 +27,11 @@ public class AuthenticationService {
 		return instance;
 	}
 	
-	public boolean authenticate(String username, String password) {
+	public boolean authenticate(String username, String password) throws InternetConnectivityException {
 		return ANGELAuthentication(username, password);
 	}
 	
-	private boolean ANGELAuthentication(String username, String password) {
+	private boolean ANGELAuthentication(String username, String password) throws InternetConnectivityException {
 		boolean validated = false;
 		String requestUrl = "http://angel.rose-hulman.edu/api/default.asp?APIaction=VALIDATE_ACCOUNT&"+"user="+username+"&password="+password;
         String method = "GET";
@@ -48,6 +49,7 @@ public class AuthenticationService {
             }               
         } catch (IOException ex) {
             Log.d("LDAP","ERROR: " + ex.getMessage());
+            throw new InternetConnectivityException("Cannot authenticate user");
         }
 		return validated;
 	}

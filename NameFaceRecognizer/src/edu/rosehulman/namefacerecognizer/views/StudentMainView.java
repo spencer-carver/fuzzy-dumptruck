@@ -19,6 +19,7 @@ public class StudentMainView extends LinearLayout{
 	private Student student;
 	private TextView studentNameView;
 	private TextView studentCourseView;
+	private TextView studentNotes;
 	
 	public StudentMainView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -27,7 +28,7 @@ public class StudentMainView extends LinearLayout{
 		mainImage = (ImageView) view.findViewById(R.id.featured_picture);
 		studentNameView = (TextView) view.findViewById(R.id.student_name);
 		studentCourseView = (TextView) view.findViewById(R.id.student_course);
-		
+		studentNotes = (TextView) view.findViewById(R.id.student_notes);
 	}
 
 	public void setStudent(Student student) {
@@ -47,6 +48,7 @@ public class StudentMainView extends LinearLayout{
 			}
 			studentCourseView.setText(studentCourses);
 		}
+		studentNotes.setText(student.getNote());
 	}
 	
 	private String getCourseNumber(String fullCourseName) {

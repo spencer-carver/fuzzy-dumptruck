@@ -114,8 +114,6 @@ public class QuizActivity extends Activity implements QuizViewListener {
 			double newEval=oldEval+(0.1-(5-qlty)*(0.08+(5-qlty)*0.02));
 			if (newEval<1.3)
 				newEval=1.3;
-			else if (newEval>2.5)
-				newEval=2.5;
 			System.out.println("student "+ i + " new EValue = " + newEval+ "quality = "+ qlty);
 
 			s.setEValue(newEval);
